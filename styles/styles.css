@@ -1,0 +1,49 @@
+/*------------------------------- All Styles Pertaining to the Navigation Bar -------------------------------*/
+nav {
+	background-color: #d14e61;
+	height: 42px;
+	opacity: 54%;
+}
+
+.nav-wrapper .brand-logo {
+	font-size: 25px;
+}
+
+.nav-wrapper a, .nav-wrapper ul {
+	line-height: 42px;
+}
+
+/*------------------------------- All Styles Pertaining to the Main Body -------------------------------*/
+body * {
+	max-height: 1000000em;
+	overflow: hidden;
+	background-color: #F3C620;
+}
+
+html {
+	height: 100%;
+	overflow:  hidden;
+}
+
+header {
+	background: black;
+}
+
+main, body {
+  	height: 100%;
+}
+
+#tableContainer {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10%;
+}
+
+/*#table {
+	background-color: #016D29;
+}*/
+
+.cell {
+	border: 3px solid white;
+	background-color: #016D29;
+}

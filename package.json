@@ -1,0 +1,22 @@
+{
+  "name": "Roulette-Simulattion",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">Roulette Simulation</h1>",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "jquery": "^3.5.0",
+    "mathjs": "^9.4.2",
+    "requirejs": "^2.3.5",
+    "router5": "^0.6.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-install": "^0.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
