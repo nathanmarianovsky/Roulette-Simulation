@@ -1,8 +1,8 @@
 /*------------------------------- All Styles Pertaining to the Navigation Bar -------------------------------*/
 nav {
-	background-color: #d14e61;
+	background-color: #016D29;
 	height: 42px;
-	opacity: 54%;
+	/*opacity: 54%;*/
 }
 
 .nav-wrapper .brand-logo {
@@ -16,13 +16,11 @@ nav {
 /*------------------------------- All Styles Pertaining to the Main Body -------------------------------*/
 body * {
 	max-height: 1000000em;
-	overflow: hidden;
-	background-color: #F3C620;
 }
 
 html {
 	height: 100%;
-	overflow:  hidden;
+	background-color: #F3C620;
 }
 
 header {
@@ -36,14 +34,26 @@ main, body {
 #tableContainer {
     width: 80%;
     margin: 0 auto;
-    padding-top: 10%;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
-/*#table {
-	background-color: #016D29;
-}*/
+#table, #submit {
+	font-weight: bold;
+}
 
 .cell {
 	border: 3px solid white;
+}
+
+.row, .input-field, .labelBackground, .cell {
 	background-color: #016D29;
+}
+
+.reducedWidth {
+	width: 5%;
+}
+
+.numberedCell {
+	width: 80%;
 }
