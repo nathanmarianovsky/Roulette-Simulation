@@ -5,6 +5,10 @@ nav {
 	/*opacity: 54%;*/
 }
 
+#navbar {
+	line-height: 42px !important;
+}
+
 .nav-wrapper .brand-logo {
 	font-size: 25px;
 }
@@ -56,4 +60,15 @@ main, body {
 
 .numberedCell {
 	width: 80%;
+}
+
+#bubble {
+	border: 3px solid black;
+	position: absolute;
+	width: 10%;
+	border-radius: 15px;
+}
+
+#bubbleRow {
+	border-radius: 20px;
 }
