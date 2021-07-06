@@ -1,12 +1,14 @@
 <header>
-	<nav class="navbar-fixed">
-	    <div class="nav-wrapper">
-	    	<a class="brand-logo center">Roulette Simulation</a>
-	    	<ul id="nav-mobile" class="right hide-on-med-and-down">
-        		<li><a id="submit" href="#">Submit</a></li>
-	      	</ul>
-    	</div>
-	</nav>
+	<div class="navbar-fixed">
+		<nav>
+		    <div class="nav-wrapper navbar-fixed">
+		    	<a class="brand-logo center">Roulette Simulation</a>
+		    	<ul id="nav-mobile" class="right hide-on-med-and-down">
+	        		<li><a id="submit" href="#">Submit</a></li>
+		      	</ul>
+	    	</div>
+		</nav>
+	</div>
 </header>
 <main>
 	<div id="tableContainer">
@@ -33,7 +35,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="cell center reducedWidth">
+				<td id="td00" class="cell center reducedWidth">
 					00:
 					<div class="row">
 				        <div class="input-field">
@@ -172,7 +174,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td></td>
+				<td id="tdConnector" class="cell center reducedWidth">
+					<hr id="splitter">
+				</td>
+				<a href="#" id="splitLink58" class="popBet"><span id="split58" class="material-icons white-text">circle</span></a>
 				<td id="vertCell1" class="cell center black reducedWidth">
 					2:
 					<div class="row black numberedCell">
@@ -338,7 +343,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="cell center reducedWidth">
+				<td id="td0" class="cell center reducedWidth">
 					0:
 					<div class="row">
 				        <div class="input-field">

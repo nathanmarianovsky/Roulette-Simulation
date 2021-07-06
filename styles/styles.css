@@ -5,8 +5,8 @@ nav {
 	/*opacity: 54%;*/
 }
 
-#navbar {
-	line-height: 42px !important;
+.navbar-fixed {
+	height: 42px;
 }
 
 .nav-wrapper .brand-logo {
@@ -71,4 +71,25 @@ main, body {
 
 #bubbleRow {
 	border-radius: 20px;
+}
+
+#td00, #tdConnector {
+	border-bottom: none;
+}
+
+#td0, #tdConnector {
+	border-top: none;
+}
+
+#tdConnector {
+	padding: 15px 0px;
+}
+
+#splitter {
+	display: block;
+    height: 1px;
+    border: 0;
+    border-top: 3px solid white;
+    margin: 1em 0;
+    padding: 0;
 }

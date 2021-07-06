@@ -8,8 +8,8 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 				$("body").append(data);
 				$("select").material_select();
 
-				var splitBets = new Array(57).fill(0),
-					lineBets = new Array(7).fill(0),
+				var splitBets = new Array(58).fill(0),
+					lineBets = new Array(13).fill(0),
 					streetBets = new Array(12).fill(0),
 					cornerBets = new Array(22).fill(0),
 					singleBets = new Array(38).fill(0),
@@ -23,17 +23,22 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 					dozen2 = [13,14,15,16,17,18,19,20,21,22,23,24],
 					dozen3 = [25,26,27,28,29,30,31,32,33,34,35,36],
 					col1 = [1,4,7,10,13,16,19,22,25,28,31,34],
-					col2 = [2,5,8,11,14,17,20,24,26,29,32,35],
+					col2 = [2,5,8,11,14,17,20,23,26,29,32,35],
 					col3 = [3,6,9,12,15,18,21,24,27,30,33,36],
 					red = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
 
 				var lines = {
 					"line2": [1,2,3,4,5,6],
-					"line3": [7,8,9,10,11,12],
-					"line4": [13,14,15,16,17,18],
-					"line5": [19,20,21,22,23,24],
-					"line6": [25,26,27,28,29,30],
-					"line7": [31,32,33,34,35,36]
+					"line3": [4,5,6,7,8,9],
+					"line4": [7,8,9,10,11,12],
+					"line5": [10,11,12,13,14,15],
+					"line6": [13,14,15,16,17,18],
+					"line7": [16,17,18,19,20,21],
+					"line8": [19,20,21,22,23,24],
+					"line9": [22,23,24,25,26,27],
+					"line10": [25,26,27,28,29,30],
+					"line11": [28,29,30,31,32,33],
+					"line12": [31,32,33,34,35,36]
 				};
 
 				var streets = {
@@ -137,7 +142,7 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 				};
 
 
-				for(var i = 1; i < 58; i++) {
+				for(var i = 1; i < 59; i++) {
 					if(i < 13) {
 						$("#streetLink" + i).hide();
 						$("#lineLink" + i).hide();
@@ -148,7 +153,7 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 					$("#splitLink" + i).hide();
 				}
 
-				for(var i = 1; i < 58; i++) {
+				for(var i = 1; i < 59; i++) {
 					var str = "",
 						width = "";
 					if(i == 1) {
@@ -218,6 +223,15 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 							});
 							i++;
 						}
+						else if(i == 58) {
+							str = $("#td00").css("height");
+							width = $("#td00").css("width");
+							$("#splitLink" + i).css({
+								"position": "absolute",
+								"left": $("#td00").offset().left - 12 + (parseInt(width.substring(0, width.length - 2)) / 2),
+								"top": $("#td00").offset().top - 12 + (parseInt(str.substring(0, str.length - 2)) * 1.5)
+							});
+						}
 						else {
 							str = $("#cornerCell" + ((i / 2) - 17)).css("height");
 							width = $("#cornerCell" + ((i / 2) - 17)).css("width");
@@ -236,7 +250,7 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 					}
 				}
 
-				for(var i = 1; i < 58; i++) {
+				for(var i = 1; i < 59; i++) {
 					if(i < 13) {
 						$("#streetLink" + i).show();
 						$("#lineLink" + i).show();
@@ -275,6 +289,7 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 					else if(scenario == 2) {
 						if(id.substring(8) == 1) {
 							header = "Top Line: 0, 00, 1, 2, 3";
+							idNum = "1";
 						}
 						else {
 							idNum = id.substring(8);
@@ -295,11 +310,16 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 					}
 					else if(scenario == 3) {
 						idNum = id.substring(9);
-						header = "Split " + idNum + ": ";
-						for(var i = 0; i < splits["split" + idNum].length; i++) {
-							header += splits["split" + idNum][i];
-							if(i != splits["split" + idNum].length - 1) {
-								header += ", ";
+						if(idNum == 58) {
+							header = "Row: 0, 00";
+						}
+						else {
+							header = "Split " + idNum + ": ";
+							for(var i = 0; i < splits["split" + idNum].length; i++) {
+								header += splits["split" + idNum][i];
+								if(i != splits["split" + idNum].length - 1) {
+									header += ", ";
+								}
 							}
 						}
 						if(splitBets[parseInt(idNum) - 1] != 0) {
@@ -338,24 +358,82 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 					});
 					if(currentValue != 0) {
 						input.val(currentValue);
+						label.addClass("active");
 					}
-					input.on("input", function() {
-						if(scenario == 1) {
-							$(this).val().length > 0 ? streetBets[parseInt(idNum) - 1] = parseInt($(this).val()) : streetBets[parseInt(idNum) - 1] = 0;
+					input.on("input", { "idNum": idNum, "scenario": scenario }, function(event) {
+						if(event.data.scenario == 1) {
+							$(this).val().length > 0 ? streetBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val()) : streetBets[parseInt(event.data.idNum) - 1] = 0;
 						}
-						else if(scenario == 2) {
-							$(this).val().length > 0 ? lineBets[parseInt(idNum) - 1] = parseInt($(this).val()) : lineBets[parseInt(idNum) - 1] = 0;
+						else if(event.data.scenario == 2) {
+							$(this).val().length > 0 ? lineBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val()) : lineBets[parseInt(event.data.idNum) - 1] = 0;
 						}
-						else if(scenario == 3) {
-							$(this).val().length > 0 ? splitBets[parseInt(idNum) - 1] = parseInt($(this).val()) : splitBets[parseInt(idNum) - 1] = 0;
+						else if(event.data.scenario == 3) {
+							$(this).val().length > 0 ? splitBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val()) : splitBets[parseInt(event.data.idNum) - 1] = 0;
 						}
-						else if(scenario == 3) {
-							$(this).val().length > 0 ? cornerBets[parseInt(idNum) - 1] = parseInt($(this).val()) : cornerBets[parseInt(idNum) - 1] = 0;
+						else if(event.data.scenario == 3) {
+							$(this).val().length > 0 ? cornerBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val()) : cornerBets[parseInt(event.data.idNum) - 1] = 0;
 						}
 					});
 				});
 
-
+				$("#posA").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? halfBets[0] = parseInt($(this).val()) : halfBets[0] = 0;
+				});
+				$("#posB").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? halfBets[1] = parseInt($(this).val()) : halfBets[1] = 0;
+				});
+				$("#posC").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? columnBets[2] = parseInt($(this).val()) : columnBets[2] = 0;
+				});
+				$("#posD").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? columnBets[1] = parseInt($(this).val()) : columnBets[1] = 0;
+				});
+				$("#posE").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? columnBets[0] = parseInt($(this).val()) : columnBets[0] = 0;
+				});
+				$("#posF").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? dozenBets[0] = parseInt($(this).val()) : columnBets[0] = 0;
+				});
+				$("#posG").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? dozenBets[1] = parseInt($(this).val()) : columnBets[1] = 0;
+				});
+				$("#posH").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? dozenBets[2] = parseInt($(this).val()) : columnBets[2] = 0;
+				});
+				$("#posI").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? parityBets[0] = parseInt($(this).val()) : parityBets[0] = 0;
+				});
+				$("#posJ").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? colorBets[0] = parseInt($(this).val()) : colorBets[0] = 0;
+				});
+				$("#posK").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? colorBets[1] = parseInt($(this).val()) : colorBets[1] = 0;
+				});
+				$("#posL").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? parityBets[1] = parseInt($(this).val()) : parityBets[1] = 0;
+				});
+				$("#pos00").on("input", function() {
+					$("#bubble").remove();
+					$(this).val().length > 0 ? singleBets[37] = parseInt($(this).val()) : singleBets[37] = 0;
+				});
+				for(var i = 0; i < 37; i++) {
+					$("#pos" + i).on("input", { "iter": i }, function(event) {
+						$("#bubble").remove();
+						$(this).val().length > 0 ? singleBets[event.data.iter] = parseInt($(this).val()) : singleBets[event.data.iter] = 0;
+					});
+				}
 
 
 
@@ -379,38 +457,70 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 
 				$("#submit").click(function(e) {
 					e.preventDefault();
-					var holder = [],
-						input = 0;
-					for(var i = 0; i < 37; i++) {
-						holder.push($("#pos" + i).val() != "" ? parseInt($("#pos" + i).val()) : 0);
-					}
-					holder.push($("#pos00").val() != "" ? parseInt($("#pos00").val()) : 0);
-					holder.push(
-						$("#posA").val() != "" ? parseInt($("#posA").val()) : 0,
-						$("#posB").val() != "" ? parseInt($("#posB").val()) : 0,
-						$("#posC").val() != "" ? parseInt($("#posC").val()) : 0,
-						$("#posD").val() != "" ? parseInt($("#posD").val()) : 0,
-						$("#posE").val() != "" ? parseInt($("#posE").val()) : 0,
-						$("#posF").val() != "" ? parseInt($("#posF").val()) : 0,
-						$("#posG").val() != "" ? parseInt($("#posG").val()) : 0,
-						$("#posH").val() != "" ? parseInt($("#posH").val()) : 0,
-						$("#posI").val() != "" ? parseInt($("#posI").val()) : 0,
-						$("#posJ").val() != "" ? parseInt($("#posJ").val()) : 0,
-						$("#posK").val() != "" ? parseInt($("#posK").val()) : 0,
-						$("#posL").val() != "" ? parseInt($("#posL").val()) : 0,
-					);
-					input = holder.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-					
-					var output = 0,
-						result = [];
+					var holder = [];
 
-					result.push({"case": "00", "output": 35 * holder[37], "profit": (35 * holder[37]) - input});
+					var reducer = (accumulator, current) => accumulator + current;
 
-					for(var i = 0; i < 37; i++) {
-						if(i == 0) {
-							result.push({"case": "0", "output": 35 * holder[0], "profit": (35 * holder[0]) - input});
+					var sumInput = splitBets.reduce(reducer, 0) + lineBets.reduce(reducer, 0) + streetBets.reduce(reducer, 0) + cornerBets.reduce(reducer, 0) + singleBets.reduce(reducer, 0) + dozenBets.reduce(reducer, 0) + halfBets.reduce(reducer, 0) + columnBets.reduce(reducer, 0) + parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0);
+
+					var sumOutput = 0;
+
+					for(var j = 0; j < 37; j++) {
+						sumOutput = 0;
+						sumOutput += singleBets[j] * 36;
+						if(j == 34) { console.log(sumOutput); }
+						for(var i = 1; i < 13; i++) {
+							if(i > 1 && lines["line" + i].includes(j)) {
+								sumOutput += lineBets[i - 1] * 6;
+							}
+							else if(i == 1 && j < 4) {
+								sumOutput += lineBets[i - 1] * 7;
+							}
 						}
+						if(j == 34) { console.log(sumOutput); }
+						for(var i = 1; i < 13; i++) {
+							if(streets["street" + i].includes(j)) {
+								sumOutput += streetBets[i - 1] * 12;
+							}
+						}
+						if(j == 34) { console.log(sumOutput); }
+						for(var i = 1; i < 58; i++) {
+							if(splits["split" + i].includes(j)) {
+								sumOutput += splitBets[i - 1] * 18;
+							}
+						}
+						if(i == 0) {
+							sumOutput += splitBets[57] * 18;
+						}
+						if(j == 34) { console.log(sumOutput); }
+						for(var i = 1; i < 23; i++) {
+							if(corners["corner" + i].includes(j)) {
+								// if(j == 31) { console.log(sumOutput); console.log(i); console.log(corners["corner" + i]); console.log(cornerBets[i]); }
+								sumOutput += cornerBets[i - 1] * 9;
+							}
+						}
+						// if(j == 31) { console.log(sumOutput); }
+						if(dozen1.includes(j)) { sumOutput += dozenBets[0] * 3; }
+						else if(dozen2.includes(j)) { sumOutput += dozenBets[1] * 3; }
+						else if(dozen3.includes(j)) { sumOutput += dozenBets[2] * 3; }
+
+						j < 19 ? sumOutput += halfBets[0] * 2 : sumOutput += halfBets[1] * 2;
+
+						if(col1.includes(j)) { sumOutput += columnBets[0] * 3; }
+						else if(col2.includes(j)) { sumOutput += columnBets[1] * 3; }
+						else if(col3.includes(j)) { sumOutput += columnBets[2] * 3; }
+
+						red.includes(j) ? sumOutput += colorBets[0] * 2 : sumOutput += colorBets[1] * 2;
+
+						j % 2 == 0 ? sumOutput += parityBets[0] * 2 : sumOutput += parityBets[1] * 2;
+
+						holder.push({"roll": String(j), "output": sumOutput});
 					}
+
+					console.log(lineBets);
+					holder.push({"roll": "00", "output": (singleBets[37] * 36) + (lineBets[0] * 7) + (splitBets[57] * 17)});
+
+					console.log(holder);
 				});
 
 			});
