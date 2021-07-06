@@ -42,7 +42,7 @@ main, body {
     padding-bottom: 3%;
 }
 
-#table, #submit {
+#table, #submit, #reset {
 	font-weight: bold;
 }
 
@@ -128,4 +128,5 @@ main, body {
 	text-align: left;
 	margin-left: 25px;
 	margin-bottom: 25px;
+	font-size: 18px;
 }
