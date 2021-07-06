@@ -265,6 +265,7 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 					e.preventDefault();
 					$("#bubble").remove();
 					var header = "",
+						og = $(this);
 						id = $(this).attr("id"),
 						idNum = "",
 						scenario = 0,
@@ -356,23 +357,28 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 						"left": $(this).offset().left - (parseInt(bubbleWidth.substring(0, bubbleWidth.length - 2)) / 2.2),
 						"top": $(this).offset().top - 150
 					});
+					label.click();
 					if(currentValue != 0) {
 						input.val(currentValue);
-						label.addClass("active");
 					}
 					input.on("input", { "idNum": idNum, "scenario": scenario }, function(event) {
 						if(event.data.scenario == 1) {
 							$(this).val().length > 0 ? streetBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val()) : streetBets[parseInt(event.data.idNum) - 1] = 0;
+							$(this).val().length > 0 ? og.children().css("color", "purple") : og.children().css("color", "purple");
 						}
 						else if(event.data.scenario == 2) {
 							$(this).val().length > 0 ? lineBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val()) : lineBets[parseInt(event.data.idNum) - 1] = 0;
+							$(this).val().length > 0 ? og.children().css("color", "burgundy") : og.children().css("color", "burgundy");
 						}
 						else if(event.data.scenario == 3) {
 							$(this).val().length > 0 ? splitBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val()) : splitBets[parseInt(event.data.idNum) - 1] = 0;
+							$(this).val().length > 0 ? og.children().css("color", "teal") : og.children().css("color", "teal");
 						}
-						else if(event.data.scenario == 3) {
+						else if(event.data.scenario == 4) {
 							$(this).val().length > 0 ? cornerBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val()) : cornerBets[parseInt(event.data.idNum) - 1] = 0;
+							$(this).val().length > 0 ? og.children().css("color", "blue") : og.children().css("color", "blue");
 						}
+						$(this).val().length > 0 ? og.children().removeClass("white-text") : og.children().addClass("white-text");
 					});
 				});
 
@@ -380,95 +386,137 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? halfBets[0] = parseInt($(this).val()) : halfBets[0] = 0;
 				});
+				$("#posA").on("click", function() {
+					$("#bubble").remove();
+				});
 				$("#posB").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? halfBets[1] = parseInt($(this).val()) : halfBets[1] = 0;
+				});
+				$("#posB").on("click", function() {
+					$("#bubble").remove();
 				});
 				$("#posC").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? columnBets[2] = parseInt($(this).val()) : columnBets[2] = 0;
 				});
+				$("#posC").on("click", function() {
+					$("#bubble").remove();
+				});
 				$("#posD").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? columnBets[1] = parseInt($(this).val()) : columnBets[1] = 0;
+				});
+				$("#posD").on("click", function() {
+					$("#bubble").remove();
 				});
 				$("#posE").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? columnBets[0] = parseInt($(this).val()) : columnBets[0] = 0;
 				});
+				$("#posE").on("click", function() {
+					$("#bubble").remove();
+				});
 				$("#posF").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? dozenBets[0] = parseInt($(this).val()) : columnBets[0] = 0;
+				});
+				$("#posF").on("click", function() {
+					$("#bubble").remove();
 				});
 				$("#posG").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? dozenBets[1] = parseInt($(this).val()) : columnBets[1] = 0;
 				});
+				$("#posG").on("click", function() {
+					$("#bubble").remove();
+				});
 				$("#posH").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? dozenBets[2] = parseInt($(this).val()) : columnBets[2] = 0;
+				});
+				$("#posH").on("click", function() {
+					$("#bubble").remove();
 				});
 				$("#posI").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? parityBets[0] = parseInt($(this).val()) : parityBets[0] = 0;
 				});
+				$("#posI").on("click", function() {
+					$("#bubble").remove();
+				});
 				$("#posJ").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? colorBets[0] = parseInt($(this).val()) : colorBets[0] = 0;
+				});
+				$("#posJ").on("click", function() {
+					$("#bubble").remove();
 				});
 				$("#posK").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? colorBets[1] = parseInt($(this).val()) : colorBets[1] = 0;
 				});
+				$("#posK").on("click", function() {
+					$("#bubble").remove();
+				});
 				$("#posL").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? parityBets[1] = parseInt($(this).val()) : parityBets[1] = 0;
 				});
+				$("#posL").on("click", function() {
+					$("#bubble").remove();
+				});
 				$("#pos00").on("input", function() {
 					$("#bubble").remove();
 					$(this).val().length > 0 ? singleBets[37] = parseInt($(this).val()) : singleBets[37] = 0;
+				});
+				$("#pos00").on("click", function() {
+					$("#bubble").remove();
 				});
 				for(var i = 0; i < 37; i++) {
 					$("#pos" + i).on("input", { "iter": i }, function(event) {
 						$("#bubble").remove();
 						$(this).val().length > 0 ? singleBets[event.data.iter] = parseInt($(this).val()) : singleBets[event.data.iter] = 0;
 					});
+					$("#pos" + i).on("click", function() {
+						$("#bubble").remove();
+					});
 				}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+				$(document).click(function(e) {
+					if($(event.target).attr("id") !== undefined) {
+						var exception = !$(event.target).attr("id").includes("street") &&
+							!$(event.target).attr("id").includes("line") &&
+							!$(event.target).attr("id").includes("corner") &&
+							!$(event.target).attr("id").includes("split");
+					}
+					else {
+						var exception = true;
+					}
+				    if($(event.target).closest("#table").length === 0 && exception) {
+				    	$("#bubble").remove();
+				    }
+				});
 
 				$("#submit").click(function(e) {
 					e.preventDefault();
+					$("#message").remove();
+					$("#resultContainer").remove();
 					var holder = [];
 
 					var reducer = (accumulator, current) => accumulator + current;
 
-					var sumInput = splitBets.reduce(reducer, 0) + lineBets.reduce(reducer, 0) + streetBets.reduce(reducer, 0) + cornerBets.reduce(reducer, 0) + singleBets.reduce(reducer, 0) + dozenBets.reduce(reducer, 0) + halfBets.reduce(reducer, 0) + columnBets.reduce(reducer, 0) + parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0);
+					var sumInput = splitBets.reduce(reducer, 0) + lineBets.reduce(reducer, 0) +
+						streetBets.reduce(reducer, 0) + cornerBets.reduce(reducer, 0) +
+						singleBets.reduce(reducer, 0) + dozenBets.reduce(reducer, 0) +
+						halfBets.reduce(reducer, 0) + columnBets.reduce(reducer, 0) +
+						parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0);
 
 					var sumOutput = 0;
 
 					for(var j = 0; j < 37; j++) {
 						sumOutput = 0;
 						sumOutput += singleBets[j] * 36;
-						if(j == 34) { console.log(sumOutput); }
 						for(var i = 1; i < 13; i++) {
 							if(i > 1 && lines["line" + i].includes(j)) {
 								sumOutput += lineBets[i - 1] * 6;
@@ -477,13 +525,11 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 								sumOutput += lineBets[i - 1] * 7;
 							}
 						}
-						if(j == 34) { console.log(sumOutput); }
 						for(var i = 1; i < 13; i++) {
 							if(streets["street" + i].includes(j)) {
 								sumOutput += streetBets[i - 1] * 12;
 							}
 						}
-						if(j == 34) { console.log(sumOutput); }
 						for(var i = 1; i < 58; i++) {
 							if(splits["split" + i].includes(j)) {
 								sumOutput += splitBets[i - 1] * 18;
@@ -492,14 +538,11 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 						if(i == 0) {
 							sumOutput += splitBets[57] * 18;
 						}
-						if(j == 34) { console.log(sumOutput); }
 						for(var i = 1; i < 23; i++) {
 							if(corners["corner" + i].includes(j)) {
-								// if(j == 31) { console.log(sumOutput); console.log(i); console.log(corners["corner" + i]); console.log(cornerBets[i]); }
 								sumOutput += cornerBets[i - 1] * 9;
 							}
 						}
-						// if(j == 31) { console.log(sumOutput); }
 						if(dozen1.includes(j)) { sumOutput += dozenBets[0] * 3; }
 						else if(dozen2.includes(j)) { sumOutput += dozenBets[1] * 3; }
 						else if(dozen3.includes(j)) { sumOutput += dozenBets[2] * 3; }
@@ -516,13 +559,34 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 
 						holder.push({"roll": String(j), "output": sumOutput});
 					}
+					holder.splice(0, 0, {"roll": "00", "output": (singleBets[37] * 36) + (lineBets[0] * 7) + (splitBets[57] * 17)});
 
-					console.log(lineBets);
-					holder.push({"roll": "00", "output": (singleBets[37] * 36) + (lineBets[0] * 7) + (splitBets[57] * 17)});
+					var message = $("<div>").attr("id", "message").addClass("center").text("TOTAL BET: " + sumInput).append($("<br>"), $("<div>").text(
+						"The table below will provide the yield and profit for every possible roll on the Roulette table."));
 
-					console.log(holder);
+					var tableDiv = $("<div>").attr("id", "resultContainer"),
+						table = $("<table>").attr("id", "resultTable"),
+						thead = $("<thead>"),
+						tbody = $("<tbody>"),
+						tr = $("<tr>"),
+						th1 = $("<th>").text("Roll").addClass("center"),
+						th2 = $("<th>").text("Yield").addClass("center"),
+						th3 = $("<th>").text("Profit").addClass("center");
+					tr.append(th1, th2, th3);
+					thead.append(tr);
+					table.append(thead, tbody);
+					for(var p = 0; p < holder.length; p++) {
+						var elemTR = $("<tr>"),
+							elemRollTD = $("<td>").text(holder[p].roll).addClass("center resultCell"),
+							elemOutputTD = $("<td>").text(holder[p].output).addClass("center resultCell"),
+							elemProfitTD = $("<td>").text(holder[p].output - sumInput).addClass("center resultCell");
+						holder[p].output - sumInput > 0 ? elemProfitTD.css("background-color", "lightgreen") : elemProfitTD.css("background-color", "indianred");
+						elemTR.append(elemRollTD, elemOutputTD, elemProfitTD);
+						table.append(elemTR);
+					}
+					tableDiv.append(table);
+					$("main").append(message, tableDiv).css("height", "inherit");
 				});
-
 			});
 		});
 	};
