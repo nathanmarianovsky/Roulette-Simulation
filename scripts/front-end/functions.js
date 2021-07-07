@@ -655,9 +655,11 @@ define(function() {
 					elemRollTD = $("<td>").text(holder[p].roll).addClass("center resultCell white-text"),
 					elemOutputTD = $("<td>").text(holder[p].output).addClass("center resultCell"),
 					elemProfitTD = $("<td>").text(holder[p].output - sumInput)
-						.addClass("center resultCell white-text");
-				holder[p].output - sumInput > 0 ? elemProfitTD.css("background-color", "lightgreen")
-					: elemProfitTD.css("background-color", "indianred");
+						.addClass("center resultCell");
+				holder[p].output - sumInput > 0 ? elemProfitTD.addClass("black-text")
+					.css({"background-color": "lightgreen", "font-weight": "bold"})
+					: elemProfitTD.addClass("white-text")
+					.css({"background-color": "indianred", "font-weight": "bold"});
 				if(p <= 1) { elemRollTD.css("background-color", "#016D29"); }
 				else if(red.includes(p)) {
 					elemRollTD.css("background-color", "red");
