@@ -1,5 +1,5 @@
 {
-  "name": "Rotations",
+  "name": "Roulette-Simulator",
   "version": "1.0.0",
   "license": "MIT",
   "ignore": [
@@ -9,9 +9,9 @@
     "test",
     "tests"
   ],
-  "homepage": "https://github.com/nathanmarianovsky/Rotations",
+  "homepage": "https://github.com/nathanmarianovsky/Roulette-Simulator",
   "authors": [
-    "Nathan Marianovsky <nathanmarianovsky@gmail.com>"
+    "Nathan Marianovsky <nathanmarianovsky@manualmath.com>"
   ],
   "dependencies": {
     "materializecss-amd": "~1.0.1"

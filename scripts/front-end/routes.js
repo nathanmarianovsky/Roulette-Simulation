@@ -15,8 +15,8 @@ define(["jquery", "math", "app/functions"], ($, Math, functions) => {
 				functions.addListeners(obj);
 
 				$(window).resize(function() {
+					$("#bubble").remove();
 					functions.markerPlacement();
-					functions.addListeners(obj);
 				});
 			});
 		});

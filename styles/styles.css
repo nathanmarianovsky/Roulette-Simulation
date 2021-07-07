@@ -2,7 +2,6 @@
 nav {
 	background-color: #016D29;
 	height: 42px;
-	/*opacity: 54%;*/
 }
 
 .navbar-fixed {
@@ -35,6 +34,7 @@ main, body {
   	height: 100%;
 }
 
+/*------------------------------- All Styles Pertaining to the Roulette Table -------------------------------*/
 #tableContainer {
     width: 80%;
     margin: 0 auto;
@@ -94,6 +94,24 @@ main, body {
     padding: 0;
 }
 
+/*------------------------------- All Styles Pertaining to the Message -------------------------------*/
+#message {
+    background-color: white;
+    width: 80%;
+    margin: 0 auto;
+    border: 5px solid black;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+#message div {
+	text-align: left;
+	margin-left: 25px;
+	margin-bottom: 25px;
+	font-size: 18px;
+}
+
+/*------------------------------- All Styles Pertaining to the Results Table -------------------------------*/
 #resultContainer {
     width: 80%;
     margin: 0 auto;
@@ -112,21 +130,5 @@ main, body {
 }
 
 .resultCell {
-	border: 2px solid black;
-}
-
-#message {
-    background-color: white;
-    width: 80%;
-    margin: 0 auto;
-    border: 5px solid black;
-    border-radius: 15px;
-    font-size: 20px;
-}
-
-#message div {
-	text-align: left;
-	margin-left: 25px;
-	margin-bottom: 25px;
-	font-size: 18px;
+	border: 4px solid lightsteelblue;
 }
