@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Nathan Marianovsky">
+		<meta name="application-name" content="Roulette Simulation">
+		<meta name="description" content="Simulates all possible rolls for a given layout">
+		<title>Roll Results</title>
+		<link rel="stylesheet" type="text/css" href="../styles/styles.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" async>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" async></script>
+		<script type="text/javascript" src="../scripts/resultLoad.js" async></script>
+	</head>
+	<body id="resultBody">
+		<div id="message" class="center">
+			<br>
+			<div>
+				The table below will provide the yield and profit for every possible roll on the Roulette table.
+			</div>
+		</div>
+		<main>
+			<div id="resultContainer">
+				<table id="resultTable">
+					<thead>
+						<tr>
+							<th class="center">Roll</th>
+							<th class="center">Yield</th>
+							<th class="center">Profit</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</main>
+	</body>
+</html>
