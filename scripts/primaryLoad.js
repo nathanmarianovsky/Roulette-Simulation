@@ -584,12 +584,12 @@ var addListeners = obj => {
 		e.preventDefault();
 		var holder = [],
 			sumOutput = 0,
+			reducer = (accumulator, current) => accumulator + current,
 			sumInput = splitBets.reduce(reducer, 0) + lineBets.reduce(reducer, 0) +
 				streetBets.reduce(reducer, 0) + cornerBets.reduce(reducer, 0) +
 				singleBets.reduce(reducer, 0) + dozenBets.reduce(reducer, 0) +
 				halfBets.reduce(reducer, 0) + columnBets.reduce(reducer, 0) +
-				parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0),
-			reducer = (accumulator, current) => accumulator + current,
+				parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0);
 		for(var j = 0; j < 37; j++) {
 			sumOutput = 0;
 			sumOutput += singleBets[j] * 36;
