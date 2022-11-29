@@ -6,15 +6,14 @@
 		<meta name="application-name" content="Roulette Simulation">
 		<meta name="description" content="Simulates all possible rolls for a given layout">
 		<title>Roulette Simulation</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<link rel="stylesheet" type="text/css" href="../styles/styles.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" async>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" async></script>
-		<!-- <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js" async></script> -->
-		<link rel="stylesheet" type="text/css" href="../styles/styles.css">
 		<script type="text/javascript" src="../scripts/primaryLoad.js" async></script>
 	</head>
 	<body>
-		<header>
+		<!-- <header>
 			<div class="navbar-fixed">
 				<nav>
 				    <div class="nav-wrapper navbar-fixed">
@@ -26,7 +25,7 @@
 			    	</div>
 				</nav>
 			</div>
-		</header>
+		</header> -->
 		<main>
 			<div id="tableContainer">
 				<table id="table" class="white-text">
@@ -605,5 +604,20 @@
 				</table>
 			</div>
 		</main>
+		<div class="fixed-action-btn">
+			<a class="btn-floating btn-large waves-effect waves-light blue tooltipped bottomPush buttonList" data-position="left" data-tooltip="Submit" id="submit"><i class="material-icons">casino</i></a>
+			<a class="btn-floating btn-large waves-effect waves-light blue tooltipped bottomPush buttonList" data-position="left" data-tooltip="Reset" id="reset"><i class="material-icons">restart_alt</i></a>
+			<a class="btn-floating modal-trigger btn-large waves-effect waves-light blue tooltipped buttonList" href="#helpModal" data-position="left" data-tooltip="Help" id="help"><i class="material-icons">help</i></a>
+		</div>
+		<div id="helpModal" class="modal">
+		    <div class="modal-content">
+		      	<h4 class="center">Help</h4>
+		      	<p>This app is designed to simulate a single roll of an American roulette table by providing the profit (or loss) of each possible role. To attain the results of a single roll simply provide the desired bets on the table and click submit at the top right of the page. A reset button is also given in case all current bets need to be cleared off of the table.</p>
+		      	<p class="right">Last Modification Date: 11/28/22<br>Designed by Nathan Marianovsky</p>
+	    	</div>
+		    <div class="modal-footer">
+		      	<a class="modal-close waves-effect waves-green btn-flat">Exit</a>
+		    </div>
+	  	</div>
 	</body>
 </html>
