@@ -640,50 +640,49 @@ var addListeners = function(obj) {
 
 			j % 2 == 0 ? sumOutput += parityBets[0] * 2 : sumOutput += parityBets[1] * 2;
 
-			holder.push({"roll": String(j), "output": sumOutput});
+			holder.push([String(j), sumOutput]);
 		}
-		holder.splice(0, 0, {
-			"roll": "00",
-			"output": (singleBets[37] * 36) + (lineBets[0] * 7) + (splitBets[57] * 17)
-		});
+		holder.splice(0, 0, ["00", (singleBets[37] * 36) + (lineBets[0] * 7) + (splitBets[57] * 17)]);
+		holder.splice(0, 0, [sumInput]);
+		ipcRenderer.send("result", holder);
 
-		var message = $("<div>").attr("id", "message").addClass("center").text("TOTAL BET: " + sumInput)
-			.append($("<br>"), $("<div>").text("The table below will provide the yield and profit for" +
-			" every possible roll on the Roulette table."));
+		// var message = $("<div>").attr("id", "message").addClass("center").text("TOTAL BET: " + sumInput)
+		// 	.append($("<br>"), $("<div>").text("The table below will provide the yield and profit for" +
+		// 	" every possible roll on the Roulette table."));
 
-		var tableDiv = $("<div>").attr("id", "resultContainer"),
-			table = $("<table>").attr("id", "resultTable"),
-			thead = $("<thead>"),
-			tbody = $("<tbody>"),
-			tr = $("<tr>"),
-			th1 = $("<th>").text("Roll").addClass("center"),
-			th2 = $("<th>").text("Yield").addClass("center"),
-			th3 = $("<th>").text("Profit").addClass("center");
-		tr.append(th1, th2, th3);
-		thead.append(tr);
-		table.append(thead, tbody);
-		for(var p = 0; p < holder.length; p++) {
-			var elemTR = $("<tr>"),
-				elemRollTD = $("<td>").text(holder[p].roll).addClass("center resultCell white-text"),
-				elemOutputTD = $("<td>").text(holder[p].output).addClass("center resultCell"),
-				elemProfitTD = $("<td>").text(holder[p].output - sumInput)
-					.addClass("center resultCell");
-			holder[p].output - sumInput > 0 ? elemProfitTD.addClass("black-text")
-				.css({"background-color": "lightgreen", "font-weight": "bold"})
-				: elemProfitTD.addClass("white-text")
-				.css({"background-color": "indianred", "font-weight": "bold"});
-			if(p <= 1) { elemRollTD.css("background-color", "#016D29"); }
-			else if(red.includes(p)) {
-				elemRollTD.css("background-color", "red");
-			}
-			else {
-				elemRollTD.css("background-color", "black");
-			}
-			elemTR.append(elemRollTD, elemOutputTD, elemProfitTD);
-			table.append(elemTR);
-		}
-		tableDiv.append(table);
-		$("main").append(message, tableDiv).css("height", "inherit");
+		// var tableDiv = $("<div>").attr("id", "resultContainer"),
+		// 	table = $("<table>").attr("id", "resultTable"),
+		// 	thead = $("<thead>"),
+		// 	tbody = $("<tbody>"),
+		// 	tr = $("<tr>"),
+		// 	th1 = $("<th>").text("Roll").addClass("center"),
+		// 	th2 = $("<th>").text("Yield").addClass("center"),
+		// 	th3 = $("<th>").text("Profit").addClass("center");
+		// tr.append(th1, th2, th3);
+		// thead.append(tr);
+		// table.append(thead, tbody);
+		// for(var p = 0; p < holder.length; p++) {
+		// 	var elemTR = $("<tr>"),
+		// 		elemRollTD = $("<td>").text(holder[p].roll).addClass("center resultCell white-text"),
+		// 		elemOutputTD = $("<td>").text(holder[p].output).addClass("center resultCell"),
+		// 		elemProfitTD = $("<td>").text(holder[p].output - sumInput)
+		// 			.addClass("center resultCell");
+		// 	holder[p].output - sumInput > 0 ? elemProfitTD.addClass("black-text")
+		// 		.css({"background-color": "lightgreen", "font-weight": "bold"})
+		// 		: elemProfitTD.addClass("white-text")
+		// 		.css({"background-color": "indianred", "font-weight": "bold"});
+		// 	if(p <= 1) { elemRollTD.css("background-color", "#016D29"); }
+		// 	else if(red.includes(p)) {
+		// 		elemRollTD.css("background-color", "red");
+		// 	}
+		// 	else {
+		// 		elemRollTD.css("background-color", "black");
+		// 	}
+		// 	elemTR.append(elemRollTD, elemOutputTD, elemProfitTD);
+		// 	table.append(elemTR);
+		// }
+		// tableDiv.append(table);
+		// $("main").append(message, tableDiv).css("height", "inherit");
 	});
 
 	$("#reset").click(function(e) {
@@ -713,15 +712,22 @@ var addListeners = function(obj) {
 			$("#pos" + letters[i]).val("");
 			$("#pos" + letters[i]).next().removeClass("active");
 		}
+		M.Toast.dismissAll();
+		M.toast({"html": "All bets on the roulette table have been cleared.", "classes": "rounded"});
 	});
 };
 
 
 
 // Wait for the window to finish loading.
-window.addEventListener("load", () => {
-	// $("select").formSelect();
+$(document).ready(() => {
 	var obj = betArrays();
 	markerPlacement();
 	addListeners(obj);
+	setTimeout(() => {
+	    var tooltipElems = document.querySelectorAll('.tooltipped'),
+	    	modalElems = document.querySelectorAll('.modal'),
+	    	tooltipInstances = M.Tooltip.init(tooltipElems),
+    		modalInstances = M.Modal.init(modalElems);
+	}, 50);
 });
