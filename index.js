@@ -29,7 +29,7 @@ var createWindow = (extension, BrowserWindow, path, width = 1000, height = 800) 
     	"height": height,
     	"autoHideMenuBar": true,
     	"center": true,
-    	"resizable": false,
+    	"resizable": true,
     	"webPreferences": {
     		"nodeIntegration": true,
     		"contextIsolation": false
@@ -78,7 +78,7 @@ app.whenReady().then(() => {
 	});
 
 	// Create the primary window.
-  	const primaryWindow = createWindow("primary", BrowserWindow, path);
+  	var primaryWindow = createWindow("primary", BrowserWindow, path);
   	primaryWindow.maximize();
 
   	// Loads the creation of a primary window upon the activation of the app.
@@ -92,6 +92,14 @@ app.whenReady().then(() => {
   	primaryWindow.on("close", () => {
     	primaryWindow = null;
        	app.quit();
+    });
+
+    ipc.on("result", (event, data) => {
+    	var resultWindow = createWindow("result", BrowserWindow, path);
+    	resultWindow.webContents.on("did-finish-load", () => {
+    		// console.log(data);
+    		resultWindow.webContents.send("resultData", data);
+    	});
     });
 
   	// Handle the load of the home page.
