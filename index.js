@@ -33,11 +33,39 @@ var createWindow = (extension, BrowserWindow, path, width = 1000, height = 800) 
     	"webPreferences": {
     		"nodeIntegration": true,
     		"contextIsolation": false
-    	}
-    	// "icon": __dirname + "/assets/favicon.ico"
+    	},
+    	"icon": __dirname + "/assets/casinoIcon.ico"
 	});
 	win.loadFile(path.join(__dirname, "pages", extension + ".html"));
   	return win;
+};
+
+
+
+/*
+
+Create the system tray icon and menu. 
+
+	- mode is either "h" or "s" depending on whether the system icon menu should have the option to hide or show the app.
+	- win is an object that represents the primary window of the Electron app. 
+
+*/ 
+var createTrayMenu = (mode, win, trayObj, Menu) => {
+	var label = (mode == "h" ? "Hide" : "Show");
+	trayObj.setToolTip("Roulette Simulator");
+	trayObj.setContextMenu(Menu.buildFromTemplate([
+		{ "label": label, click: () => {
+			if(mode == "h") {
+				win.hide();
+				createTrayMenu("s", win, trayObj, Menu);
+			}
+			else {
+				win.show();
+				createTrayMenu("h", win, trayObj, Menu);
+			}
+		}},
+		{ "label": "Quit", "role": "quit" }
+	]));
 };
 
 
@@ -102,8 +130,8 @@ app.whenReady().then(() => {
     });
 
   	// Create the system tray icon and menu. 
-  	// tray = new Tray(path.join(__dirname, "/assets/logo.png"));
-	// tools.createTrayMenu("h", primaryWindow, tray, Menu);
+  	tray = new Tray(path.join(__dirname, "assets", "casinoIcon.png"));
+	createTrayMenu("h", primaryWindow, tray, Menu);
 });
 
 
