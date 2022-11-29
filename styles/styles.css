@@ -117,6 +117,10 @@ main, body {
 	border-radius: 15px;
 }
 
+#bubble * {
+	color: black;
+}
+
 #bubbleRow {
 	border-radius: 20px;
 }
