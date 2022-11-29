@@ -13,7 +13,7 @@ const { ipcRenderer } = require("electron"),
 
 
 
-var betArrays = function() {
+var betArrays = () => {
 	var splitBets = new Array(58).fill(0),
 		lineBets = new Array(13).fill(0),
 		streetBets = new Array(12).fill(0),
@@ -174,7 +174,7 @@ var betArrays = function() {
 
 
 
-var markerPlacement = function() {
+var markerPlacement = () => {
 	for(var i = 1; i < 59; i++) {
 		if(i < 13) {
 			$("#streetLink" + i).hide();
@@ -310,7 +310,7 @@ var markerPlacement = function() {
 
 
 
-var addListeners = function(obj) {
+var addListeners = obj => {
 	var splitBets = obj.splitBets,
 		lineBets = obj.lineBets,
 		streetBets = obj.streetBets,
@@ -582,21 +582,14 @@ var addListeners = function(obj) {
 
 	$("#submit").click(function(e) {
 		e.preventDefault();
-		$("#message").remove();
-		$("#resultContainer").remove();
-		$("#bubble").remove();
-		var holder = [];
-
-		var reducer = (accumulator, current) => accumulator + current;
-
-		var sumInput = splitBets.reduce(reducer, 0) + lineBets.reduce(reducer, 0) +
-			streetBets.reduce(reducer, 0) + cornerBets.reduce(reducer, 0) +
-			singleBets.reduce(reducer, 0) + dozenBets.reduce(reducer, 0) +
-			halfBets.reduce(reducer, 0) + columnBets.reduce(reducer, 0) +
-			parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0);
-
-		var sumOutput = 0;
-
+		var holder = [],
+			sumOutput = 0,
+			sumInput = splitBets.reduce(reducer, 0) + lineBets.reduce(reducer, 0) +
+				streetBets.reduce(reducer, 0) + cornerBets.reduce(reducer, 0) +
+				singleBets.reduce(reducer, 0) + dozenBets.reduce(reducer, 0) +
+				halfBets.reduce(reducer, 0) + columnBets.reduce(reducer, 0) +
+				parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0),
+			reducer = (accumulator, current) => accumulator + current,
 		for(var j = 0; j < 37; j++) {
 			sumOutput = 0;
 			sumOutput += singleBets[j] * 36;
@@ -629,60 +622,17 @@ var addListeners = function(obj) {
 			if(dozen1.includes(j)) { sumOutput += dozenBets[0] * 3; }
 			else if(dozen2.includes(j)) { sumOutput += dozenBets[1] * 3; }
 			else if(dozen3.includes(j)) { sumOutput += dozenBets[2] * 3; }
-
 			j < 19 ? sumOutput += halfBets[0] * 2 : sumOutput += halfBets[1] * 2;
-
 			if(col1.includes(j)) { sumOutput += columnBets[0] * 3; }
 			else if(col2.includes(j)) { sumOutput += columnBets[1] * 3; }
 			else if(col3.includes(j)) { sumOutput += columnBets[2] * 3; }
-
 			red.includes(j) ? sumOutput += colorBets[0] * 2 : sumOutput += colorBets[1] * 2;
-
 			j % 2 == 0 ? sumOutput += parityBets[0] * 2 : sumOutput += parityBets[1] * 2;
-
 			holder.push([String(j), sumOutput]);
 		}
 		holder.splice(0, 0, ["00", (singleBets[37] * 36) + (lineBets[0] * 7) + (splitBets[57] * 17)]);
 		holder.splice(0, 0, [sumInput]);
 		ipcRenderer.send("result", holder);
-
-		// var message = $("<div>").attr("id", "message").addClass("center").text("TOTAL BET: " + sumInput)
-		// 	.append($("<br>"), $("<div>").text("The table below will provide the yield and profit for" +
-		// 	" every possible roll on the Roulette table."));
-
-		// var tableDiv = $("<div>").attr("id", "resultContainer"),
-		// 	table = $("<table>").attr("id", "resultTable"),
-		// 	thead = $("<thead>"),
-		// 	tbody = $("<tbody>"),
-		// 	tr = $("<tr>"),
-		// 	th1 = $("<th>").text("Roll").addClass("center"),
-		// 	th2 = $("<th>").text("Yield").addClass("center"),
-		// 	th3 = $("<th>").text("Profit").addClass("center");
-		// tr.append(th1, th2, th3);
-		// thead.append(tr);
-		// table.append(thead, tbody);
-		// for(var p = 0; p < holder.length; p++) {
-		// 	var elemTR = $("<tr>"),
-		// 		elemRollTD = $("<td>").text(holder[p].roll).addClass("center resultCell white-text"),
-		// 		elemOutputTD = $("<td>").text(holder[p].output).addClass("center resultCell"),
-		// 		elemProfitTD = $("<td>").text(holder[p].output - sumInput)
-		// 			.addClass("center resultCell");
-		// 	holder[p].output - sumInput > 0 ? elemProfitTD.addClass("black-text")
-		// 		.css({"background-color": "lightgreen", "font-weight": "bold"})
-		// 		: elemProfitTD.addClass("white-text")
-		// 		.css({"background-color": "indianred", "font-weight": "bold"});
-		// 	if(p <= 1) { elemRollTD.css("background-color", "#016D29"); }
-		// 	else if(red.includes(p)) {
-		// 		elemRollTD.css("background-color", "red");
-		// 	}
-		// 	else {
-		// 		elemRollTD.css("background-color", "black");
-		// 	}
-		// 	elemTR.append(elemRollTD, elemOutputTD, elemProfitTD);
-		// 	table.append(elemTR);
-		// }
-		// tableDiv.append(table);
-		// $("main").append(message, tableDiv).css("height", "inherit");
 	});
 
 	$("#reset").click(function(e) {
@@ -725,8 +675,8 @@ $(document).ready(() => {
 	markerPlacement();
 	addListeners(obj);
 	setTimeout(() => {
-	    var tooltipElems = document.querySelectorAll('.tooltipped'),
-	    	modalElems = document.querySelectorAll('.modal'),
+	    var tooltipElems = document.querySelectorAll(".tooltipped"),
+	    	modalElems = document.querySelectorAll(".modal"),
 	    	tooltipInstances = M.Tooltip.init(tooltipElems),
     		modalInstances = M.Modal.init(modalElems);
 	}, 50);

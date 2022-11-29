@@ -29,7 +29,7 @@ var createWindow = (extension, BrowserWindow, path, width = 1000, height = 800) 
     	"height": height,
     	"autoHideMenuBar": true,
     	"center": true,
-    	"resizable": true,
+    	"resizable": false,
     	"webPreferences": {
     		"nodeIntegration": true,
     		"contextIsolation": false
@@ -97,22 +97,13 @@ app.whenReady().then(() => {
     ipc.on("result", (event, data) => {
     	var resultWindow = createWindow("result", BrowserWindow, path);
     	resultWindow.webContents.on("did-finish-load", () => {
-    		// console.log(data);
     		resultWindow.webContents.send("resultData", data);
     	});
     });
 
-  	// Handle the load of the home page.
-  	// ipc.on("primaryLoad", event => {
-  	// 	mainWindow.loadFile(path.join(__dirname, "pages", "", "primary.html"));
-  	// });
-
   	// Create the system tray icon and menu. 
   	// tray = new Tray(path.join(__dirname, "/assets/logo.png"));
 	// tools.createTrayMenu("h", primaryWindow, tray, Menu);
-
-	// Add all of the back-end listeners.
-	// appListeners.addListeners(app, BrowserWindow, path, fs, exec, ipc, tools, primaryWindow);
 });
 
 
