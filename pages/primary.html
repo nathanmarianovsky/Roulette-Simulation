@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Nathan Marianovsky">
+		<meta name="application-name" content="Roulette Simulation">
+		<meta name="description" content="Simulates all possible rolls for a given layout">
+		<title>Roulette Simulation</title>
+		<link rel="stylesheet" type="text/css" href="../styles/styles.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" async>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" async></script>
+		<script type="text/javascript" src="../scripts/primaryLoad.js" async></script>
+	</head>
+	<body>
+		<main>
+			<div id="tableContainer">
+				<table id="table" class="white-text">
+					<tr>
+						<td></td>
+						<td class="cell center" colspan="6">
+							1 TO 18:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posA" type="number" class="center">
+						          	<label for="posA" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td class="cell center" colspan="6">
+							19 TO 36:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posB" type="number" class="center">
+						          	<label for="posB" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+					</tr>
+					<tr class="bottomBorder">
+						<td id="td00" class="cell center reducedWidth">
+							00:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="pos00" type="number" class="center">
+						          	<label for="pos00" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td class="cell center red reducedWidth">
+							3:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos3" type="number" class="center">
+						          	<label for="pos3" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td id="splitCell1" class="cell center black reducedWidth">
+							6:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos6" type="number" class="center">
+						          	<label for="pos6" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink1" class="popBet"><span id="split1" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell2" class="cell center red reducedWidth">
+							9:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos9" type="number" class="center">
+						          	<label for="pos9" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink2" class="popBet"><span id="split2" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell3" class="cell center red reducedWidth">
+							12:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos12" type="number" class="center">
+						          	<label for="pos12" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink3" class="popBet"><span id="split3" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell4" class="cell center black reducedWidth">
+							15:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos15" type="number" class="center">
+						          	<label for="pos15" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink4" class="popBet"><span id="split4" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell5" class="cell center red reducedWidth">
+							18:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos18" type="number" class="center">
+						          	<label for="pos18" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink5" class="popBet"><span id="split5" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell6" class="cell center red reducedWidth">
+							21:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos21" type="number" class="center">
+						          	<label for="pos21" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink6" class="popBet"><span id="split6" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell7" class="cell center black reducedWidth">
+							24:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos24" type="number" class="center">
+						          	<label for="pos24" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink7" class="popBet"><span id="split7" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell8" class="cell center red reducedWidth">
+							27:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos27" type="number" class="center">
+						          	<label for="pos27" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink8" class="popBet"><span id="split8" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell9" class="cell center red reducedWidth">
+							30:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos30" type="number" class="center">
+						          	<label for="pos30" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink9" class="popBet"><span id="split9" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell10" class="cell center black reducedWidth">
+							33:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos33" type="number" class="center">
+						          	<label for="pos33" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink10" class="popBet"><span id="split10" class="material-icons circleBet white-text">circle</span></a>
+						<td id="splitCell11" class="cell center red reducedWidth">
+							36:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos36" type="number" class="center">
+						          	<label for="pos36" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink11" class="popBet"><span id="split11" class="material-icons circleBet white-text">circle</span></a>
+						<td class="cell center reducedWidth">
+							Column 3:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posC" type="number" class="center">
+						          	<label for="posC" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+					</tr>
+					<tr class="bottomBorder">
+						<td id="tdConnector" class="cell center reducedWidth">
+							<hr id="splitter">
+						</td>
+						<a href="#" id="splitLink58" class="popBet"><span id="split58" class="material-icons circleBet white-text">circle</span></a>
+						<td id="vertCell1" class="cell center black reducedWidth">
+							2:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos2" type="number" class="center">
+						          	<label for="pos2" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="splitLink34" class="popBet"><span id="split34" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink35" class="popBet"><span id="split35" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell1" class="cell center red reducedWidth">
+							5:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos5" type="number" class="center">
+						          	<label for="pos5" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink1" class="popBet"><span id="corner1" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink12" class="popBet"><span id="split12" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink36" class="popBet"><span id="split36" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink37" class="popBet"><span id="split37" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell2" class="cell center black reducedWidth">
+							8:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos8" type="number" class="center">
+						          	<label for="pos8" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink2" class="popBet"><span id="corner2" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink13" class="popBet"><span id="split13" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink38" class="popBet"><span id="split38" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink39" class="popBet"><span id="split39" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell3" class="cell center black reducedWidth">
+							11:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos11" type="number" class="center">
+						          	<label for="pos11" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink3" class="popBet"><span id="corner3" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink14" class="popBet"><span id="split14" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink40" class="popBet"><span id="split40" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink41" class="popBet"><span id="split41" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell4" class="cell center red reducedWidth">
+							14:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos14" type="number" class="center">
+						          	<label for="pos14" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink4" class="popBet"><span id="corner4" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink15" class="popBet"><span id="split15" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink42" class="popBet"><span id="split42" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink43" class="popBet"><span id="split43" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell5" class="cell center black reducedWidth">
+							17:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos17" type="number" class="center">
+						          	<label for="pos17" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink5" class="popBet"><span id="corner5" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink16" class="popBet"><span id="split16" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink44" class="popBet"><span id="split44" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink45" class="popBet"><span id="split45" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell6" class="cell center black reducedWidth">
+							20:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos20" type="number" class="center">
+						          	<label for="pos20" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink6" class="popBet"><span id="corner6" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink17" class="popBet"><span id="split17" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink46" class="popBet"><span id="split46" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink47" class="popBet"><span id="split47" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell7" class="cell center red reducedWidth">
+							23:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos23" type="number" class="center">
+						          	<label for="pos23" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink7" class="popBet"><span id="corner7" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink18" class="popBet"><span id="split18" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink48" class="popBet"><span id="split48" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink49" class="popBet"><span id="split49" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell8" class="cell center black reducedWidth">
+							26:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos26" type="number" class="center">
+						          	<label for="pos26" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink8" class="popBet"><span id="corner8" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink19" class="popBet"><span id="split19" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink50" class="popBet"><span id="split50" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink51" class="popBet"><span id="split51" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell9" class="cell center black reducedWidth">
+							29:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos29" type="number" class="center">
+						          	<label for="pos29" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink9" class="popBet"><span id="corner9" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink20" class="popBet"><span id="split20" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink52" class="popBet"><span id="split52" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink53" class="popBet"><span id="split53" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell10" class="cell center red reducedWidth">
+							32:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos32" type="number" class="center">
+						          	<label for="pos32" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink10" class="popBet"><span id="corner10" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink21" class="popBet"><span id="split21" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink54" class="popBet"><span id="split54" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink55" class="popBet"><span id="split55" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell11" class="cell center black reducedWidth">
+							35:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos35" type="number" class="center">
+						          	<label for="pos35" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink11" class="popBet"><span id="corner11" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink22" class="popBet"><span id="split22" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink56" class="popBet"><span id="split56" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink57" class="popBet"><span id="split57" class="material-icons circleBet white-text">circle</span></a>
+						<td class="cell center reducedWidth">
+							Column 2:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posD" type="number" class="center">
+						          	<label for="posD" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+					</tr>
+					<tr class="bottomBorder">
+						<td id="td0" class="cell center reducedWidth">
+							0:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="pos0" type="number" class="center">
+						          	<label for="pos0" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td id="streetCell1" class="cell center red reducedWidth">
+							1:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos1" type="number" class="center">
+						          	<label for="pos1" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="streetLink1" class="popBet"><span id="street1" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink1" class="popBet"><span id="line1" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell12" class="cell center black reducedWidth">
+							4:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos4" type="number" class="center">
+						          	<label for="pos4" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink12" class="popBet"><span id="corner12" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink23" class="popBet"><span id="split23" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink2" class="popBet"><span id="street2" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink2" class="popBet"><span id="line2" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell13" class="cell center red reducedWidth">
+							7:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos7" type="number" class="center">
+						          	<label for="pos7" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink13" class="popBet"><span id="corner13" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink24" class="popBet"><span id="split24" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink3" class="popBet"><span id="street3" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink3" class="popBet"><span id="line3" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell14" class="cell center black reducedWidth">
+							10:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos10" type="number" class="center">
+						          	<label for="pos10" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink14" class="popBet"><span id="corner14" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink25" class="popBet"><span id="split25" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink4" class="popBet"><span id="street4" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink4" class="popBet"><span id="line4" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell15" class="cell center black reducedWidth">
+							13:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos13" type="number" class="center">
+						          	<label for="pos13" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink15" class="popBet"><span id="corner15" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink26" class="popBet"><span id="split26" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink5" class="popBet"><span id="street5" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink5" class="popBet"><span id="line5" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell16" class="cell center red reducedWidth">
+							16:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos16" type="number" class="center">
+						          	<label for="pos16" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink16" class="popBet"><span id="corner16" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink27" class="popBet"><span id="split27" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink6" class="popBet"><span id="street6" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink6" class="popBet"><span id="line6" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell17" class="cell center red reducedWidth">
+							19:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos19" type="number" class="center">
+						          	<label for="pos19" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink17" class="popBet"><span id="corner17" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink28" class="popBet"><span id="split28" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink7" class="popBet"><span id="street7" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink7" class="popBet"><span id="line7" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell18" class="cell center black reducedWidth">
+							22:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos22" type="number" class="center">
+						          	<label for="pos22" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink18" class="popBet"><span id="corner18" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink29" class="popBet"><span id="split29" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink8" class="popBet"><span id="street8" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink8" class="popBet"><span id="line8" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell19" class="cell center red reducedWidth">
+							25:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos25" type="number" class="center">
+						          	<label for="pos25" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink19" class="popBet"><span id="corner19" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink30" class="popBet"><span id="split30" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink9" class="popBet"><span id="street9" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink9" class="popBet"><span id="line9" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell20" class="cell center black reducedWidth">
+							28:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos28" type="number" class="center">
+						          	<label for="pos28" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink20" class="popBet"><span id="corner20" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink31" class="popBet"><span id="split31" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink10" class="popBet"><span id="street10" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink10" class="popBet"><span id="line10" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell21" class="cell center black reducedWidth">
+							31:
+							<div class="row black numberedCell">
+						        <div class="input-field black">
+						          	<input id="pos31" type="number" class="center">
+						          	<label for="pos31" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink21" class="popBet"><span id="corner21" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink32" class="popBet"><span id="split32" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink11" class="popBet"><span id="street11" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink11" class="popBet"><span id="line11" class="material-icons circleBet white-text">circle</span></a>
+						<td id="cornerCell22" class="cell center red reducedWidth">
+							34:
+							<div class="row red numberedCell">
+						        <div class="input-field red">
+						          	<input id="pos34" type="number" class="center">
+						          	<label for="pos34" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<a href="#" id="cornerLink22" class="popBet"><span id="corner22" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="splitLink33" class="popBet"><span id="split33" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="streetLink12" class="popBet"><span id="street12" class="material-icons circleBet white-text">circle</span></a>
+						<a href="#" id="lineLink12" class="popBet"><span id="line12" class="material-icons circleBet white-text">circle</span></a>
+						<td class="cell center reducedWidth">
+							Column 1:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posE" type="number" class="center">
+						          	<label for="posE" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+					</tr>
+					<tr class="bottomBorder">
+						<td></td>
+						<td class="cell center" colspan="4">
+							1 TO 12:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posF" type="number" class="center">
+						          	<label for="posF" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td class="cell center" colspan="4">
+							13 TO 24:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posG" type="number" class="center">
+						          	<label for="posG" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td class="cell center" colspan="4">
+							25 TO 36:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posH" type="number" class="center">
+						          	<label for="posH" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+					</tr>
+					<tr class="bottomBorder">
+						<td></td>
+						<td class="cell center" colspan="3">
+							EVEN:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posI" type="number" class="center">
+						          	<label for="posI" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td class="cell center red" colspan="3">
+							RED:
+							<div class="row red">
+						        <div class="input-field red">
+						          	<input id="posJ" type="number" class="center">
+						          	<label for="posJ" class="red">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td class="cell center black" colspan="3">
+							BLACK:
+							<div class="row black">
+						        <div class="input-field black">
+						          	<input id="posK" type="number" class="center">
+						          	<label for="posK" class="black">BET</label>
+						        </div>
+					      	</div>
+						</td>
+						<td class="cell center" colspan="3">
+							ODD:
+							<div class="row">
+						        <div class="input-field">
+						          	<input id="posL" type="number" class="center">
+						          	<label for="posL" class="labelBackground">BET</label>
+						        </div>
+					      	</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</main>
+		<div class="fixed-action-btn">
+			<a class="btn-floating btn-large waves-effect waves-light blue tooltipped bottomPush buttonList" data-position="left" data-tooltip="Submit" id="submit"><i class="material-icons">casino</i></a>
+			<a class="btn-floating btn-large waves-effect waves-light blue tooltipped bottomPush buttonList" data-position="left" data-tooltip="Reset" id="reset"><i class="material-icons">restart_alt</i></a>
+			<a class="btn-floating modal-trigger btn-large waves-effect waves-light blue tooltipped buttonList" href="#helpModal" data-position="left" data-tooltip="Help" id="help"><i class="material-icons">help</i></a>
+		</div>
+		<div id="helpModal" class="modal">
+		    <div class="modal-content">
+		      	<h4 class="center">Help</h4>
+		      	<p>This app is designed to simulate a single roll of an American roulette table by providing the profit (or loss) of each possible role. To attain the results of a single roll simply provide the desired bets on the table and click submit at the top right of the page. A reset button is also given in case all current bets need to be cleared off of the table.</p>
+		      	<p class="right">Last Modification Date: 11/28/22<br>Designed by Nathan Marianovsky</p>
+	    	</div>
+		    <div class="modal-footer">
+		      	<a class="modal-close waves-effect waves-green btn-flat">Exit</a>
+		    </div>
+	  	</div>
+	</body>
+</html>

@@ -1,24 +1,67 @@
-/*------------------------------- All Styles Pertaining to the Navigation Bar -------------------------------*/
-nav {
-	background-color: #016D29;
-	height: 42px;
+/*------------------------------- All Styles Pertaining to the Page Buttons -------------------------------*/
+
+
+
+.fixed-action-btn {
+	right: 50px !important;
+	top: 4px !important;
 }
 
-.navbar-fixed {
-	height: 42px;
+.bottomPush {
+	margin-bottom: 15px;
 }
 
-.nav-wrapper .brand-logo {
-	font-size: 25px;
+.buttonList {
+	display: list-item !important;
 }
 
-.nav-wrapper a, .nav-wrapper ul {
-	line-height: 42px;
+.material-tooltip {
+	border-radius: 15px !important;
 }
+
+#toast-container {
+	left: 2%;
+	right: auto !important;
+	top: 90% !important;
+}
+
+
+
+/*------------------------------- All Styles Pertaining to the Page Modals -------------------------------*/
+
+
+
+.modal {
+	border-radius: 20px !important;
+	background-color: #F3C620 !important;
+}
+
+.modal .modal-content h4, .modal .modal-content p, .modal-footer a {
+	color: black !important;
+}
+
+.modal-footer {
+	background-color: #F3C620 !important;
+}
+
+
 
 /*------------------------------- All Styles Pertaining to the Main Body -------------------------------*/
+
+
+
 body * {
 	max-height: 1000000em;
+	overflow-y: hidden;
+	color: white;
+}
+
+#resultBody {
+	height: auto;
+}
+
+#resultBody * {
+	color: black;
 }
 
 html {
@@ -34,11 +77,16 @@ main, body {
   	height: 100%;
 }
 
+
+
 /*------------------------------- All Styles Pertaining to the Roulette Table -------------------------------*/
+
+
+
 #tableContainer {
     width: 80%;
     margin: 0 auto;
-    padding-top: 3%;
+    padding-top: 1%;
     padding-bottom: 3%;
 }
 
@@ -69,6 +117,10 @@ main, body {
 	border-radius: 15px;
 }
 
+#bubble * {
+	color: black;
+}
+
 #bubbleRow {
 	border-radius: 20px;
 }
@@ -94,11 +146,20 @@ main, body {
     padding: 0;
 }
 
+.bottomBorder {
+	border-bottom: none;
+}
+
+
+
 /*------------------------------- All Styles Pertaining to the Message -------------------------------*/
+
+
+
 #message {
     background-color: white;
     width: 80%;
-    margin: 0 auto;
+    margin: 30px auto 0 auto;
     border: 5px solid black;
     border-radius: 15px;
     font-size: 20px;
@@ -106,17 +167,23 @@ main, body {
 
 #message div {
 	text-align: left;
-	margin-left: 25px;
+	margin-left: 15px;
+	margin-right: 15px;
 	margin-bottom: 25px;
 	font-size: 18px;
 }
 
+
+
 /*------------------------------- All Styles Pertaining to the Results Table -------------------------------*/
+
+
+
 #resultContainer {
     width: 80%;
     margin: 0 auto;
     padding-top: 50px;
-    padding-bottom: 100px;
+    padding-bottom: 30px;
 }
 
 #resultTable {
@@ -127,6 +194,10 @@ main, body {
 
 #resultTable thead {
 	font-size: 20px;
+}
+
+.resultTableRow {
+	line-height: 3px;
 }
 
 .resultCell {

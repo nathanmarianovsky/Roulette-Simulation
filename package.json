@@ -1,22 +1,10 @@
 {
-  "name": "Roulette-Simulation",
-  "version": "1.0.0",
-  "description": "<h1 align=\"center\">Roulette Simulation</h1>",
-  "main": "app.js",
   "dependencies": {
-    "express": "^4.17.1",
-    "jquery": "^3.6.0",
-    "mathjs": "^9.4.4",
-    "requirejs": "^2.3.6",
-    "router5": "^0.6.4"
+    "electron-context-menu": "^3.6.0",
+    "jquery": "^3.6.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-install": "^0.6.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+    "electron": "^21.3.0",
+    "electron-packager": "^17.1.1"
+  }
 }
