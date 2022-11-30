@@ -125,32 +125,32 @@ app.whenReady().then(() => {
 	contextMenu({
 		"showSelectAll": true
 	});
-
 	// Create the primary window.
   	var primaryWindow = createWindow("primary", BrowserWindow, path);
+  	// Maximize the primary window.
   	primaryWindow.maximize();
-
   	// Loads the creation of a primary window upon the activation of the app.
   	app.on("activate", () => {
     	if(BrowserWindow.getAllWindows().length === 0) {
       		createWindow("primary", BrowserWindow, path);
     	}
   	});
-
   	// Close the Electron app if the primary window is closed.
   	primaryWindow.on("close", () => {
     	primaryWindow = null;
        	app.quit();
     });
-
+  	// Loads the creation of a result window upon the submission of bets.
     ipc.on("result", (event, data) => {
+    	// Remove any previous result window.
     	removeResultWindows(BrowserWindow);
+    	// Create the result window.
     	var resultWindow = createWindow("result", BrowserWindow, path);
     	resultWindow.webContents.on("did-finish-load", () => {
+    		// Once the result window has finished loading provide it with the results.
     		resultWindow.webContents.send("resultData", data);
     	});
     });
-
   	// Create the system tray icon and menu. 
   	tray = new Tray(path.join(__dirname, "assets", "casinoIcon.png"));
 	createTrayMenu("h", primaryWindow, tray, Menu);
