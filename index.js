@@ -48,6 +48,7 @@ Create the system tray icon and menu.
 
 	- mode is either "h" or "s" depending on whether the system icon menu should have the option to hide or show the app.
 	- win is an object that represents the primary window of the Electron app. 
+	- trayObj and Menu are objects provided by the Electron app to handle the loading of the app tray and menu.
 
 */ 
 var createTrayMenu = (mode, win, trayObj, Menu) => {
@@ -66,6 +67,26 @@ var createTrayMenu = (mode, win, trayObj, Menu) => {
 		}},
 		{ "label": "Quit", "role": "quit" }
 	]));
+};
+
+
+
+/*
+
+Remove duplicates of the result window.
+
+	- browser is the BrowserWindow object provided by the Electron app.
+
+*/ 
+var removeResultWindows = browser => {
+	var list = browser.getAllWindows();
+	if(list.length >= 2) {
+		for(var i = 0; i < list.length; i++) {
+			if(list[i].getTitle() == "Roll Results") {
+				list[i].close();
+			}
+		}
+	}
 };
 
 
@@ -123,6 +144,7 @@ app.whenReady().then(() => {
     });
 
     ipc.on("result", (event, data) => {
+    	removeResultWindows(BrowserWindow);
     	var resultWindow = createWindow("result", BrowserWindow, path);
     	resultWindow.webContents.on("did-finish-load", () => {
     		resultWindow.webContents.send("resultData", data);
