@@ -44,6 +44,22 @@
 	background-color: #F3C620 !important;
 }
 
+#introductionCheckLabel {
+	position: relative;
+	top: 11px;
+	left: 16px;
+}
+
+#introductionCheckSpan {
+	line-height: 19px;
+	color: black;
+}
+
+[type="checkbox"].filled-in:checked+span:not(.lever):after {
+	border-color: black !important;
+	background-color: black !important;
+}
+
 
 
 /*------------------------------- All Styles Pertaining to the Main Body -------------------------------*/

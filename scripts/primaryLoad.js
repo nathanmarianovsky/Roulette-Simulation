@@ -698,11 +698,44 @@ $(document).ready(() => {
 	markerPlacement();
 	// Add all roulette table listeners.
 	addListeners(betArrays());
-	// Initialize the modals and tooltips after a small delay.
 	setTimeout(() => {
+		// Initialize the modals and tooltips after a small delay.
 	    var tooltipElems = document.querySelectorAll(".tooltipped"),
 	    	modalElems = document.querySelectorAll(".modal"),
 	    	tooltipInstances = M.Tooltip.init(tooltipElems),
     		modalInstances = M.Modal.init(modalElems);
+		if(!fs.existsSync(path.join(__dirname, "../parameters.json"))) {
+			for(var k = 0; k < modalInstances.length; k++) {
+				if(modalInstances[k].id == "helpModal") {
+					modalInstances[k].el.children[0].children[0].innerText = "Introduction";
+					modalInstances[k].open();
+					var mutationCaller = (mutationsList, observer) => {
+					    mutationsList.forEach(mutation => {
+					        if (mutation.attributeName === 'class') {
+					            if(mutation.target.id == "helpModal" && !mutation.target.classList.contains("open")) {
+									mutation.target.children[0].children[0].innerText = "Help";
+					            }
+					        }
+					    })
+					};
+					const mutationObserver = new MutationObserver(callback);
+					mutationObserver.observe(modalInstances[k].el, { attributes: true });
+				}
+			}
+		}
+		else {
+			const parameters = JSON.parse(fs.readFileSync(path.join(__dirname, "../parameters.json"), "UTF8"));
+			if(parameters.introduction == false) {
+				document.getElementById("introductionCheck").checked = true;		
+			}
+		}
+		$("#introductionCheck").change(() => {
+			if(document.getElementById("introductionCheck").checked) {
+				fs.writeFileSync(path.join(__dirname, "../parameters.json"), JSON.stringify({"introduction": false}), "UTF8");	
+			}
+			else {
+				fs.unlinkSync(path.join(__dirname, "../parameters.json"));
+			}
+		});
 	}, 50);
 });
