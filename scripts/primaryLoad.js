@@ -692,6 +692,40 @@ var addListeners = obj => {
 
 
 
+/*
+
+Loads the introductory modal if necessary.
+
+    - modalInstances is an array containing all modal instances on the page.
+
+*/
+var introductionModal = modalInstances => {
+	// Iterate through all modal instances until the helpModal is found.
+	for(var k = 0; k < modalInstances.length; k++) {
+		if(modalInstances[k].id == "helpModal") {
+			// Change the title of the helpModal from "Help" to "Introduction" on an initial load.
+			modalInstances[k].el.children[0].children[0].innerText = "Introduction";
+			// Open the introductory modal.
+			modalInstances[k].open();
+			// Define the callback that will handle a change in the helpModal title.
+			var mutationCaller = (mutationsList, observer) => {
+			    mutationsList.forEach(mutation => {
+			        if (mutation.attributeName === "class") {
+			            if(mutation.target.id == "helpModal" && !mutation.target.classList.contains("open")) {
+							mutation.target.children[0].children[0].innerText = "Help";
+			            }
+			        }
+			    })
+			};
+			// Define an observer and let it trigger an event whenever the class list of the helpModal changes.
+			const mutationObserver = new MutationObserver(mutationCaller);
+			mutationObserver.observe(modalInstances[k].el, { attributes: true });
+		}
+	}
+};
+
+
+
 // Wait for the window to finish loading.
 $(document).ready(() => {
 	// Fix the placement of all roulette table markers.
@@ -703,52 +737,24 @@ $(document).ready(() => {
 		// Initialize the modals and tooltips after a small delay.
 	    var tooltipElems = document.querySelectorAll(".tooltipped"),
 	    	modalElems = document.querySelectorAll(".modal"),
-	    	tooltipInstances = M.Tooltip.init(tooltipElems),
-    		modalInstances = M.Modal.init(modalElems);
+	    	tooltipInstancesList = M.Tooltip.init(tooltipElems),
+    		modalInstancesList = M.Modal.init(modalElems),
+    		dir = path.resolve(__dirname, "../parameters.json");
     	// Check if a parameters file exists.
-		if(!fs.existsSync(path.join(__dirname, "../parameters.json"))) {
-			// Iterate through all modal instances until the helpModal is found.
-			for(var k = 0; k < modalInstances.length; k++) {
-				if(modalInstances[k].id == "helpModal") {
-					// Change the title of the helpModal from "Help" to "Introduction" on an initial load.
-					modalInstances[k].el.children[0].children[0].innerText = "Introduction";
-					// Open the introductory modal.
-					modalInstances[k].open();
-					// Define the callback that will handle a change in the helpModal title.
-					var mutationCaller = (mutationsList, observer) => {
-					    mutationsList.forEach(mutation => {
-					        if (mutation.attributeName === "class") {
-					            if(mutation.target.id == "helpModal" && !mutation.target.classList.contains("open")) {
-									mutation.target.children[0].children[0].innerText = "Help";
-					            }
-					        }
-					    })
-					};
-					// Define an observer and let it trigger an event whenever the class list of the helpModal changes.
-					const mutationObserver = new MutationObserver(callback);
-					mutationObserver.observe(modalInstances[k].el, { attributes: true });
-				}
-			}
+		if(!fs.existsSync(dir)) {
+			introductionModal(modalInstancesList);
 		}
 		else {
 			// If a parameters file exists then check the introductionCheck on the helpModal.
-			const parameters = JSON.parse(fs.readFileSync(path.join(__dirname, "../parameters.json"), "UTF8"));
-			if(parameters.introduction == false) {
-				document.getElementById("introductionCheck").checked = true;
-			}
+			const parameters = JSON.parse(fs.readFileSync(dir, "UTF8"));
+			parameters.introduction == true ? introductionModal(modalInstancesList) : document.getElementById("introductionCheck").checked = true;
 		}
 		// Listen for a check/uncheck on the introductionCheck located in the helpModal.
 		$("#introductionCheck").change(() => {
-			// If the checkbox is checked then write a parameters file to indicate that the introductory message is not to be showed.
-			if(document.getElementById("introductionCheck").checked) {
-				fs.writeFileSync(path.join(__dirname, "../parameters.json"), JSON.stringify({"introduction": false}), "UTF8");
-			}
-			// Otherwise delete the parameters file.
-			else {
-				if(fs.existsSync(path.join(__dirname, "../parameters.json"))) {
-					fs.unlinkSync(path.join(__dirname, "../parameters.json"));
-				}
-			}
+			// Write a parameters file to indicate whether the introductory message is to be showed or not.
+			document.getElementById("introductionCheck").checked
+				? fs.writeFileSync(dir, JSON.stringify({"introduction": false}), "UTF8")
+				: fs.writeFileSync(dir, JSON.stringify({"introduction": true}), "UTF8");
 		});
 	}, 50);
 });
