@@ -202,12 +202,12 @@ var markerPlacement = (xShift, yShift) => {
 			heightInt = parseInt(str.substring(0, str.length - 2));
 			$("#streetLink" + i).css({
 				"position": "absolute",
-				"left": $("#streetCell1").offset().left - xShift + (widthInt / 2),
+				"left": $("#streetCell1").offset().left - ($("#streetLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
 				"top": $("#streetCell1").offset().top - yShift + heightInt
 			});
 			$("#lineLink" + i).css({
 				"position": "absolute",
-				"left": $("#streetCell1").offset().left - xShift,
+				"left": $("#streetCell1").offset().left - ($("#lineLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
 				"top": $("#streetCell1").offset().top - yShift + heightInt
 			});
 		}
@@ -218,19 +218,19 @@ var markerPlacement = (xShift, yShift) => {
 			heightInt = parseInt(str.substring(0, str.length - 2));
 			$("#streetLink" + i).css({
 				"position": "absolute",
-				"left": $("#cornerCell" + (i + 10)).offset().left - xShift + (widthInt / 2),
+				"left": $("#cornerCell" + (i + 10)).offset().left - ($("#streetLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
 				"top": $("#cornerCell" + (i + 10)).offset().top - yShift + heightInt
 			});
 			$("#lineLink" + i).css({
 				"position": "absolute",
-				"left": $("#cornerCell" + (i + 10)).offset().left - xShift,
+				"left": $("#cornerCell" + (i + 10)).offset().left - ($("#lineLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
 				"top": $("#cornerCell" + (i + 10)).offset().top - yShift + heightInt
 			});
 		}
 		if(i < 23) {
 			$("#cornerLink" + i).css({
 				"position": "absolute",
-				"left": $("#cornerCell" + i).offset().left - xShift,
+				"left": $("#cornerCell" + i).offset().left - ($("#cornerLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
 				"top": $("#cornerCell" + i).offset().top - yShift
 			});
 		}
@@ -239,7 +239,7 @@ var markerPlacement = (xShift, yShift) => {
 			heightInt = parseInt(str.substring(0, str.length - 2));
 			$("#splitLink" + i).css({
 				"position": "absolute",
-				"left": $("#splitCell" + i).offset().left - xShift,
+				"left": $("#splitCell" + i).offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
 				"top": $("#splitCell" + i).offset().top - yShift + (heightInt / 2)
 			});
 		}
@@ -248,7 +248,7 @@ var markerPlacement = (xShift, yShift) => {
 			heightInt = parseInt(str.substring(0, str.length - 2));
 			$("#splitLink" + i).css({
 				"position": "absolute",
-				"left": $("#cornerCell" + (i - 11)).offset().left - xShift,
+				"left": $("#cornerCell" + (i - 11)).offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
 				"top": $("#cornerCell" + (i - 11)).offset().top - yShift + (heightInt / 2)
 			});
 		}
@@ -260,12 +260,12 @@ var markerPlacement = (xShift, yShift) => {
 				heightInt = parseInt(str.substring(0, str.length - 2));
 				$("#splitLink" + i).css({
 					"position": "absolute",
-					"left": $("#vertCell1").offset().left - xShift + (widthInt / 2),
+					"left": $("#vertCell1").offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
 					"top": $("#vertCell1").offset().top - yShift
 				});
 				$("#splitLink" + (i + 1)).css({
 					"position": "absolute",
-					"left": $("#vertCell1").offset().left - xShift + (widthInt / 2),
+					"left": $("#vertCell1").offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
 					"top": $("#vertCell1").offset().top - yShift + heightInt
 				});
 				i++;
@@ -277,7 +277,7 @@ var markerPlacement = (xShift, yShift) => {
 				heightInt = parseInt(str.substring(0, str.length - 2));
 				$("#splitLink" + i).css({
 					"position": "absolute",
-					"left": $("#td00").offset().left - xShift + (widthInt / 2),
+					"left": $("#td00").offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
 					"top": $("#td00").offset().top - yShift + (heightInt * 1.5)
 				});
 			}
@@ -288,12 +288,12 @@ var markerPlacement = (xShift, yShift) => {
 				heightInt = parseInt(str.substring(0, str.length - 2));
 				$("#splitLink" + i).css({
 					"position": "absolute",
-					"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - xShift + (widthInt / 2),
+					"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
 					"top": $("#cornerCell" + ((i / 2) - 17)).offset().top - yShift
 				});
 				$("#splitLink" + (i + 1)).css({
 					"position": "absolute",
-					"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - xShift + (widthInt / 2),
+					"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
 					"top": $("#cornerCell" + ((i / 2) - 17)).offset().top - yShift + heightInt
 				});
 				i++;
