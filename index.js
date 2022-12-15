@@ -29,7 +29,7 @@ var createWindow = (extension, BrowserWindow, path, width = 1000, height = 800) 
     	"height": height,
     	"autoHideMenuBar": true,
     	"center": true,
-    	"resizable": false,
+    	"resizable": true,
     	"webPreferences": {
     		"nodeIntegration": true,
     		"contextIsolation": false

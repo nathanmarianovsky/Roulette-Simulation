@@ -1,10 +1,32 @@
 {
+  "name": "roulette-simulation",
+  "author": "Nathan Marianovsky",
+  "version": "1.0.0",
+  "license": "ISC",
+  "description": "simulates all possible rolls for a given layout",
+  "main": "index.js",
   "dependencies": {
-    "electron-context-menu": "^3.6.0",
+    "electron-context-menu": "^3.6.1",
     "jquery": "^3.6.1"
   },
   "devDependencies": {
-    "electron": "^21.3.0",
-    "electron-packager": "^17.1.1"
-  }
+    "electron": "^22.0.0",
+    "electron-installer-debian": "^3.1.0",
+    "electron-packager": "^17.1.1",
+    "electron-wix-msi": "^5.0.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "buildWindows": "npm exec electron-packager . Roulette-Simulation --platform=win32 --arch=x64 && node build.js -x64Windows",
+    "buildLinux-x64": "npm exec electron-packager . --platform=linux --arch=x64 && node build.js -x64Debian",
+    "buildLinux-arm": "npm exec electron-packager . --platform=linux --arch=arm && node build.js -armDebian"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanmarianovsky/Roulette-Simulation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nathanmarianovsky/Roulette-Simulation/issues"
+  },
+  "homepage": "https://github.com/nathanmarianovsky/Roulette-Simulation#readme"
 }
