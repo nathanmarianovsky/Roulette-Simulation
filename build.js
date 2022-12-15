@@ -33,17 +33,17 @@ var windowsBuild = () => {
 
 var debBuild = arch => {
     const options = {
-        "src": path.resolve(__dirname, "Roulette-Simulation-linux-x64"),
-        "dest": path.resolve(__dirname, "build", "Installer-Debian-" + (arch == "amd64" ? "x64" : "ARM")),
+        "src": path.resolve(__dirname, "Roulette-Simulation-linux-" + (arch == "amd64" ? "x64" : "arm64")),
+        "dest": path.resolve(__dirname, "build", "Installer-Debian-" + (arch == "amd64" ? "x64" : "arm64")),
         "icon": path.resolve(__dirname, "assets", "casinoIcon.ico"),
         "productName": "Roulette Simulation",
         "arch": arch
     }
     debInstaller(options).then(() => {
-        fs.rmSync(path.resolve(__dirname, "Roulette-Simulation-linux-" + (arch == "amd64" ? "x64" : "arm")), {"recursive": true, "force": true});
-        const buildPath = path.resolve(__dirname, "build", "Installer-Debian-" + (arch == "amd64" ? "x64" : "ARM")),
+        fs.rmSync(path.resolve(__dirname, "Roulette-Simulation-linux-" + (arch == "amd64" ? "x64" : "arm64")), {"recursive": true, "force": true});
+        const buildPath = path.resolve(__dirname, "build", "Installer-Debian-" + (arch == "amd64" ? "x64" : "arm64")),
             list = fs.readdirSync(buildPath);
-        fs.renameSync(path.join(buildPath, list[0]), path.join(buildPath, "roulette-simulation-x64.deb"));
+        fs.renameSync(path.join(buildPath, list[0]), path.join(buildPath, "roulette-simulation-" + (arch == "amd64" ? "x64" : "arm64") + ".deb"));
     });
 };
 
@@ -52,5 +52,5 @@ for(var i = 0; i < process.argv.length; i++) {
     var current = process.argv[i];
     if(current == "-x64Windows") { windowsBuild(); }
     else if(current == "-x64Debian") { debBuild("amd64"); }
-    else if(current == "-armDebian") { debBuild("arm"); }
+    else if(current == "-armDebian") { debBuild("arm64"); }
 }
