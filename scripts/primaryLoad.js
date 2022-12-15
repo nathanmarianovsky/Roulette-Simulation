@@ -751,10 +751,10 @@ $(document).ready(() => {
 				? fs.writeFileSync(dir, JSON.stringify({"introduction": false}), "UTF8")
 				: fs.writeFileSync(dir, JSON.stringify({"introduction": true}), "UTF8");
 		});
+		// Listen for a resize of the window.
 		$(window).resize(() => {
-			if($("#bubble").length > 0) {
-				$("#bubble").remove();
-			}
+			// Remove any bubble on a resize.
+			if($("#bubble").length > 0) { $("#bubble").remove(); }
 			// Fix the placement of all roulette table markers.
 			markerPlacement(6, 12);
 		});
