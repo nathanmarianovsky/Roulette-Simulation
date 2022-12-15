@@ -30,7 +30,7 @@ in order to load the app.
 
 This assumes that electron-packager is installed along with electron-wix-msi (for Windows) or electron-installer-debian (for Debian based Linux distributions). In the root directory of the repository, as administrator, build an installer for Windows x64 via:
 ```js
-npm run buildWindows
+npm run buildWindows-x64
 ```
 For Debian based Linux distributions build an installer via:
 ```js
@@ -38,6 +38,6 @@ npm run buildLinux-x64
 ```
 or
 ```js
-npm run buildLinux-arm
+npm run buildLinux-arm64
 ```
 depending on the desired architecture. The resulting msi or deb files will be placed inside of /build. 
