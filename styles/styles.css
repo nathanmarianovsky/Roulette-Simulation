@@ -13,6 +13,7 @@
 
 .buttonList {
 	display: list-item !important;
+	background-color: #71787D !important;
 }
 
 .material-tooltip {
@@ -33,15 +34,15 @@
 
 .modal {
 	border-radius: 20px !important;
-	background-color: #F3C620 !important;
+	background-color: #252523 !important;
 }
 
 .modal .modal-content h4, .modal .modal-content p, .modal-footer a {
-	color: black !important;
+	color: white !important;
 }
 
 .modal-footer {
-	background-color: #F3C620 !important;
+	background-color: #252523 !important;
 }
 
 #introductionCheckLabel {
@@ -52,7 +53,7 @@
 
 #introductionCheckSpan {
 	line-height: 19px;
-	color: black;
+	color: white;
 }
 
 [type="checkbox"].filled-in:checked+span:not(.lever):after {
@@ -82,7 +83,7 @@ body * {
 
 html {
 	height: 100%;
-	background-color: #F3C620;
+	background-color: #252523;
 }
 
 header {
@@ -166,6 +167,16 @@ main, body {
 	border-bottom: none;
 }
 
+.circleBet {
+	font-size: 12px !important;
+	color: white;
+/*	color: #71787D;*/
+}
+
+.popBet {
+	display: none;
+}
+
 
 
 /*------------------------------- All Styles Pertaining to the Message -------------------------------*/
@@ -176,8 +187,8 @@ main, body {
     background-color: white;
     width: 80%;
     margin: 30px auto 0 auto;
-    border: 5px solid black;
-    border-radius: 15px;
+    padding-top: 10px;
+    border: 3px solid lightsteelblue;
     font-size: 20px;
 }
 
@@ -204,8 +215,7 @@ main, body {
 
 #resultTable {
     background-color: white;
-    border: 5px solid black;
-    border-radius: 15px;
+    border: 3px solid lightsteelblue;
 }
 
 #resultTable thead {
@@ -217,5 +227,9 @@ main, body {
 }
 
 .resultCell {
-	border: 4px solid lightsteelblue;
+	border: 3px solid lightsteelblue;
+}
+
+.red > label {
+	color: #373737 !important;
 }

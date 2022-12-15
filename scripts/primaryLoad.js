@@ -184,19 +184,11 @@ var betArrays = () => {
 
 Handles the placement of markers for all corners, lines, splits, and streets.
 
+	- xShift is the distance by which the markers have to be shifted in the horizontal direction.
+	- yShift is the distance by which the markers have to be shifted in the vertical direction.
+
 */
-var markerPlacement = () => {
-	// Hide all corner, line, split, and street markers.
-	for(var i = 1; i < 59; i++) {
-		if(i < 13) {
-			$("#streetLink" + i).hide();
-			$("#lineLink" + i).hide();
-		}
-		if(i < 23) {
-			$("#cornerLink" + i).hide();
-		}
-		$("#splitLink" + i).hide();
-	}
+var markerPlacement = (xShift, yShift) => {
 	// Position all corner, line, split, and street markers.
 	for(var i = 1; i < 59; i++) {
 		var str = "",
@@ -210,13 +202,13 @@ var markerPlacement = () => {
 			heightInt = parseInt(str.substring(0, str.length - 2));
 			$("#streetLink" + i).css({
 				"position": "absolute",
-				"left": $("#streetCell1").offset().left - 12 + (widthInt / 2),
-				"top": $("#streetCell1").offset().top - 12 + heightInt
+				"left": $("#streetCell1").offset().left - xShift + (widthInt / 2),
+				"top": $("#streetCell1").offset().top - yShift + heightInt
 			});
 			$("#lineLink" + i).css({
 				"position": "absolute",
-				"left": $("#streetCell1").offset().left - 12,
-				"top": $("#streetCell1").offset().top - 12 + heightInt
+				"left": $("#streetCell1").offset().left - xShift,
+				"top": $("#streetCell1").offset().top - yShift + heightInt
 			});
 		}
 		else if(i < 13 && i > 1) {
@@ -226,20 +218,20 @@ var markerPlacement = () => {
 			heightInt = parseInt(str.substring(0, str.length - 2));
 			$("#streetLink" + i).css({
 				"position": "absolute",
-				"left": $("#cornerCell" + (i + 10)).offset().left - 12 + (widthInt / 2),
-				"top": $("#cornerCell" + (i + 10)).offset().top - 12 + heightInt
+				"left": $("#cornerCell" + (i + 10)).offset().left - xShift + (widthInt / 2),
+				"top": $("#cornerCell" + (i + 10)).offset().top - yShift + heightInt
 			});
 			$("#lineLink" + i).css({
 				"position": "absolute",
-				"left": $("#cornerCell" + (i + 10)).offset().left - 12,
-				"top": $("#cornerCell" + (i + 10)).offset().top - 12 + heightInt
+				"left": $("#cornerCell" + (i + 10)).offset().left - xShift,
+				"top": $("#cornerCell" + (i + 10)).offset().top - yShift + heightInt
 			});
 		}
 		if(i < 23) {
 			$("#cornerLink" + i).css({
 				"position": "absolute",
-				"left": $("#cornerCell" + i).offset().left - 12,
-				"top": $("#cornerCell" + i).offset().top - 12
+				"left": $("#cornerCell" + i).offset().left - xShift,
+				"top": $("#cornerCell" + i).offset().top - yShift
 			});
 		}
 		if(i <= 11) {
@@ -247,8 +239,8 @@ var markerPlacement = () => {
 			heightInt = parseInt(str.substring(0, str.length - 2));
 			$("#splitLink" + i).css({
 				"position": "absolute",
-				"left": $("#splitCell" + i).offset().left - 12,
-				"top": $("#splitCell" + i).offset().top - 12 + (heightInt / 2)
+				"left": $("#splitCell" + i).offset().left - xShift,
+				"top": $("#splitCell" + i).offset().top - yShift + (heightInt / 2)
 			});
 		}
 		else if(i > 11 && i < 34) {
@@ -256,8 +248,8 @@ var markerPlacement = () => {
 			heightInt = parseInt(str.substring(0, str.length - 2));
 			$("#splitLink" + i).css({
 				"position": "absolute",
-				"left": $("#cornerCell" + (i - 11)).offset().left - 12,
-				"top": $("#cornerCell" + (i - 11)).offset().top - 12 + (heightInt / 2)
+				"left": $("#cornerCell" + (i - 11)).offset().left - xShift,
+				"top": $("#cornerCell" + (i - 11)).offset().top - yShift + (heightInt / 2)
 			});
 		}
 		else {
@@ -268,13 +260,13 @@ var markerPlacement = () => {
 				heightInt = parseInt(str.substring(0, str.length - 2));
 				$("#splitLink" + i).css({
 					"position": "absolute",
-					"left": $("#vertCell1").offset().left - 12 + (widthInt / 2),
-					"top": $("#vertCell1").offset().top - 12
+					"left": $("#vertCell1").offset().left - xShift + (widthInt / 2),
+					"top": $("#vertCell1").offset().top - yShift
 				});
 				$("#splitLink" + (i + 1)).css({
 					"position": "absolute",
-					"left": $("#vertCell1").offset().left - 12 + (widthInt / 2),
-					"top": $("#vertCell1").offset().top - 12 + heightInt
+					"left": $("#vertCell1").offset().left - xShift + (widthInt / 2),
+					"top": $("#vertCell1").offset().top - yShift + heightInt
 				});
 				i++;
 			}
@@ -285,8 +277,8 @@ var markerPlacement = () => {
 				heightInt = parseInt(str.substring(0, str.length - 2));
 				$("#splitLink" + i).css({
 					"position": "absolute",
-					"left": $("#td00").offset().left - 12 + (widthInt / 2),
-					"top": $("#td00").offset().top - 12 + (heightInt * 1.5)
+					"left": $("#td00").offset().left - xShift + (widthInt / 2),
+					"top": $("#td00").offset().top - yShift + (heightInt * 1.5)
 				});
 			}
 			else {
@@ -296,13 +288,13 @@ var markerPlacement = () => {
 				heightInt = parseInt(str.substring(0, str.length - 2));
 				$("#splitLink" + i).css({
 					"position": "absolute",
-					"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - 12 + (widthInt / 2),
-					"top": $("#cornerCell" + ((i / 2) - 17)).offset().top - 12
+					"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - xShift + (widthInt / 2),
+					"top": $("#cornerCell" + ((i / 2) - 17)).offset().top - yShift
 				});
 				$("#splitLink" + (i + 1)).css({
 					"position": "absolute",
-					"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - 12 + (widthInt / 2),
-					"top": $("#cornerCell" + ((i / 2) - 17)).offset().top - 12 + heightInt
+					"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - xShift + (widthInt / 2),
+					"top": $("#cornerCell" + ((i / 2) - 17)).offset().top - yShift + heightInt
 				});
 				i++;
 			}
@@ -452,36 +444,34 @@ var addListeners = obj => {
 			"top": $(this).offset().top - 150
 		});
 		label.click();
-		if(currentValue != 0) {
-			input.val(currentValue);
-		}
+		if(currentValue != 0) { input.val(currentValue); }
 		input.on("input", { "idNum": idNum, "scenario": scenario }, function(event) {
 			if(event.data.scenario == 1) {
 				$(this).val().length > 0 ? streetBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val())
 					: streetBets[parseInt(event.data.idNum) - 1] = 0;
-				$(this).val().length > 0 ? og.children().css("color", "purple")
-					: og.children().css("color", "purple");
 			}
 			else if(event.data.scenario == 2) {
 				$(this).val().length > 0 ? lineBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val())
 					: lineBets[parseInt(event.data.idNum) - 1] = 0;
-				$(this).val().length > 0 ? og.children().css("color", "burgundy")
-					: og.children().css("color", "burgundy");
 			}
 			else if(event.data.scenario == 3) {
 				$(this).val().length > 0 ? splitBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val())
 					: splitBets[parseInt(event.data.idNum) - 1] = 0;
-				$(this).val().length > 0 ? og.children().css("color", "teal")
-					: og.children().css("color", "teal");
 			}
 			else if(event.data.scenario == 4) {
 				$(this).val().length > 0 ? cornerBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val())
 					: cornerBets[parseInt(event.data.idNum) - 1] = 0;
-				$(this).val().length > 0 ? og.children().css("color", "blue")
-					: og.children().css("color", "blue");
 			}
-			$(this).val().length > 0 ? og.children().removeClass("white-text")
-				: og.children().addClass("white-text");
+			if($(this).val().length > 0 && og.children().first().css("font-size") != "24px") {
+				og.css("left", parseFloat(og.css("left").substring(0, og.css("left").length - 2)) - 6);
+				og.children()[0].style.setProperty("font-size", "24px", "important");
+			}
+			else {
+				if($(this).val().length == 0 && og.children().first().css("font-size") == "24px") {
+					og.css("left", parseFloat(og.css("left").substring(0, og.css("left").length - 2)) + 6);
+					og.children()[0].style.setProperty("font-size", "12px", "important");
+				}
+			}
 		});
 	});
 	// Listen for click and input events on all roulette table side bets.
@@ -663,7 +653,12 @@ var addListeners = obj => {
 		$("#bubble").remove();
 		$("#message").remove();
 		$("#resultContainer").remove();
-		$(".circleBet").addClass("white-text");
+		$(".circleBet").each((index, elem) => {
+			if(elem.style.fontSize == "24px") {
+				elem.parentNode.style.setProperty("left", (parseFloat(elem.parentNode.style.left.substring(0, elem.parentNode.style.left.length - 2)) + 6) + "px");
+				elem.style.setProperty("font-size", "12px", "important");
+			}
+		});
 		splitBets = new Array(58).fill(0);
 		lineBets = new Array(13).fill(0);
 		streetBets = new Array(12).fill(0);
@@ -729,7 +724,7 @@ var introductionModal = modalInstances => {
 // Wait for the window to finish loading.
 $(document).ready(() => {
 	// Fix the placement of all roulette table markers.
-	markerPlacement();
+	markerPlacement(6, 12);
 	// Add all roulette table listeners.
 	addListeners(betArrays());
 	// Introduce a small delay to allow the tooltips and modals to properly initialize.
@@ -755,6 +750,13 @@ $(document).ready(() => {
 			document.getElementById("introductionCheck").checked
 				? fs.writeFileSync(dir, JSON.stringify({"introduction": false}), "UTF8")
 				: fs.writeFileSync(dir, JSON.stringify({"introduction": true}), "UTF8");
+		});
+		$(window).resize(() => {
+			if($("#bubble").length > 0) {
+				$("#bubble").remove();
+			}
+			// Fix the placement of all roulette table markers.
+			markerPlacement(6, 12);
 		});
 	}, 50);
 });
