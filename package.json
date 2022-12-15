@@ -17,8 +17,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "buildWindows-x64": "npm exec electron-packager . Roulette-Simulation --platform=win32 --arch=x64 && node build.js -x64Windows",
-    "buildLinux-x64": "npm exec electron-packager . --platform=linux --arch=x64 && node build.js -x64Debian",
+    "buildWindows-amd64": "npm exec electron-packager . Roulette-Simulation --platform=win32 --arch=x64 && node build.js -x64Windows",
+    "buildLinux-amd64": "npm exec electron-packager . --platform=linux --arch=x64 && node build.js -x64Debian",
     "buildLinux-arm64": "npm exec electron-packager . --platform=linux --arch=arm && node build.js -armDebian"
   },
   "repository": {
