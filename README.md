@@ -4,7 +4,8 @@
 # Table of Contents
 
 - [Setting Up](#setting-up)
-- [Running the Code](#running-the-code)
+- [Running the App](#running-the-app)
+- [Building the App](#building-the-app)
 
 
 # Setting Up
@@ -16,10 +17,27 @@ npm install
 This will handle the installation of all node_modules.
 
 
-# Running the Code
+# Running the App
 
-In the root directory of the repository run
+In the root directory of the repository run:
 ```js
 electron .
 ```
 in order to load the app.
+
+
+# Building the App
+
+This assumes that electron-packager is installed along with electron-wix-msi (for Windows) or electron-installer-debian (for Debian based Linux distributions). In the root directory of the repository, as administrator, build an installer for Windows x64 via:
+```js
+npm run buildWindows
+```
+For Debian based Linux distributions build an installer via:
+```js
+npm run buildLinux-x64
+```
+or
+```js
+npm run buildLinux-arm
+```
+depending on the desired architecture. The resulting msi or deb files will be placed inside of /build. 
