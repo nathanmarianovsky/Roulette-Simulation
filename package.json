@@ -1,13 +1,13 @@
 {
   "name": "roulette-simulation",
   "author": "Nathan Marianovsky",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "ISC",
   "description": "simulates all possible rolls for a given layout",
   "main": "index.js",
   "dependencies": {
     "electron-context-menu": "^3.6.1",
-    "jquery": "^3.6.1"
+    "jquery": "^3.6.2"
   },
   "devDependencies": {
     "electron": "^22.0.0",
