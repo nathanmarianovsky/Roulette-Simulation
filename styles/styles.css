@@ -124,7 +124,23 @@ main, body {
 }
 
 .numberedCell {
-	width: 80%;
+	padding: 0 10px;
+}
+
+.labelType1 {
+	left: 47.5% !important;
+}
+
+.labelType2 {
+	left: 33% !important;
+}
+
+.labelType3 {
+	left: 46.5% !important;
+}
+
+.labelType4 {
+	left: 45% !important;
 }
 
 #bubble {
