@@ -8,32 +8,43 @@ Declare all of the necessary variables.
 */
 const { ipcRenderer } = require("electron"),
 	path = require("path"),
-	fs = require("fs"),
-	$ = require("jquery");
+	fs = require("fs");
 
 
 
+// Populate the result table once the roulette table computations have been provided.
 ipcRenderer.on("resultData", (event, results) => {
-	const messageText = "The table below will provide the yield and profit for every possible roll on the Roulette table.";
-	$("#message").text("TOTAL BET: " + results[0][0]).append($("<br>"), $("<div>").text(messageText));
-	const red = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+	const red = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+	let message = document.getElementById("message"),
+		messageDiv = document.createElement("div");
+	message.textContent = "TOTAL BET: " + results[0][0];
+	messageDiv.textContent = "The table below will provide the yield and profit for every possible roll on the Roulette table.";
+	message.append(document.createElement("br"), messageDiv);
 	for(var p = 1; p < results.length; p++) {
-		var elemTR = $("<tr>").addClass("resultTableRow"),
-			elemRollTD = $("<td>").text(results[p][0]).addClass("center resultCell white-text"),
-			elemOutputTD = $("<td>").text(results[p][1]).addClass("center resultCell"),
-			elemProfitTD = $("<td>").text(results[p][1] - results[0][0]).addClass("center resultCell");
-		results[p][1] - results[0][0] > 0 ? elemProfitTD.addClass("black-text")
-			.css({"background-color": "lightgreen", "font-weight": "bold"})
-			: elemProfitTD.addClass("white-text")
-			.css({"background-color": "indianred", "font-weight": "bold"});
-		if(p <= 2) { elemRollTD.css("background-color", "#016D29"); }
-		else if(red.includes(p)) {
-			elemRollTD.css("background-color", "red");
+		let elemTR = document.createElement("tr"),
+			elemRollTD = document.createElement("td"),
+			elemOutputTD = document.createElement("td"),
+			elemProfitTD = document.createElement("td");
+		elemTR.classList.add("resultTableRow");
+		elemRollTD.classList.add("center", "resultCell", "white-text");
+		elemOutputTD.classList.add("center", "resultCell");
+		elemProfitTD.classList.add("center", "resultCell");
+		elemRollTD.textContent = results[p][0];
+		elemOutputTD.textContent = results[p][1];
+		elemProfitTD.textContent = results[p][1] - results[0][0];
+		if(results[p][1] - results[0][0] > 0) {
+			elemProfitTD.classList.add("black-text");
+			elemProfitTD.style.backgroundColor = "lightgreen";
 		}
 		else {
-			elemRollTD.css("background-color", "black");
+			elemProfitTD.classList.add("white-text");
+			elemProfitTD.style.backgroundColor = "indianred";
 		}
+		elemProfitTD.style.fontWeight = "bold";
+		if(p <= 2) { elemRollTD.style.backgroundColor = "#016D29"; }
+		else if(red.includes(p)) { elemRollTD.style.backgroundColor = "red"; }
+		else { elemRollTD.style.backgroundColor = "black"; }
 		elemTR.append(elemRollTD, elemOutputTD, elemProfitTD);
-		$("#resultTable").append(elemTR);
+		document.getElementById("resultTable").append(elemTR);
 	}
 });
