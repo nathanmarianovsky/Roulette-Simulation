@@ -203,26 +203,12 @@ var markerPlacement = (xShift, yShift) => {
 				offset = { "top": rect.top + window.scrollY, "left": rect.left + window.scrollX };
 			heightInt = streetCell.offsetHeight;
 			widthInt = streetCell.offsetWidth;
-			// str = $("#streetCell1").css("height");
-			// width = $("#streetCell1").css("width");
-			// widthInt = parseInt(width.substring(0, width.length - 2));
-			// heightInt = parseInt(str.substring(0, str.length - 2));
 			streetLink.style.position = "absolute";
 			streetLink.style.left = (offset.left - (window.getComputedStyle(streetLink.children[0]).fontSize != "24px" ? xShift : xShift + 6) + (widthInt / 2)) + "px";
 			streetLink.style.top = (offset.top - yShift + heightInt) + "px";
-			// $("#streetLink1").css({
-			// 	"position": "absolute",
-			// 	"left": $("#streetCell1").offset().left - ($("#streetLink1").children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
-			// 	"top": $("#streetCell1").offset().top - yShift + heightInt
-			// });
 			lineLink.style.position = "absolute";
 			lineLink.style.left = (offset.left - (window.getComputedStyle(lineLink.children[0]).fontSize != "24px" ? xShift : xShift + 6)) + "px";
 			lineLink.style.top = (offset.top - yShift + heightInt) + "px";
-			// $("#lineLink1").css({
-			// 	"position": "absolute",
-			// 	"left": $("#streetCell1").offset().left - ($("#lineLink1").children().first().css("font-size") != "24px" ? xShift : xShift + 6),
-			// 	"top": $("#streetCell1").offset().top - yShift + heightInt
-			// });
 		}
 		else if(i < 13 && i > 1) {
 			let cornerCell = document.getElementById("cornerCell" + (i + 10)),
@@ -232,26 +218,12 @@ var markerPlacement = (xShift, yShift) => {
 				offset = { "top": rect.top + window.scrollY, "left": rect.left + window.scrollX };
 			heightInt = cornerCell.offsetHeight;
 			widthInt = cornerCell.offsetWidth;
-			// str = $("#cornerCell" + (i + 10)).css("height");
-			// width = $("#cornerCell" + (i + 10)).css("width");
-			// widthInt = parseInt(width.substring(0, width.length - 2));
-			// heightInt = parseInt(str.substring(0, str.length - 2));
 			streetLink.style.position = "absolute";
 			streetLink.style.left = (offset.left - (window.getComputedStyle(streetLink.children[0]).fontSize != "24px" ? xShift : xShift + 6) + (widthInt / 2)) + "px";
 			streetLink.style.top = (offset.top - yShift + heightInt) + "px";
-			// $("#streetLink" + i).css({
-			// 	"position": "absolute",
-			// 	"left": $("#cornerCell" + (i + 10)).offset().left - ($("#streetLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
-			// 	"top": $("#cornerCell" + (i + 10)).offset().top - yShift + heightInt
-			// });
 			lineLink.style.position = "absolute";
 			lineLink.style.left = (offset.left - (window.getComputedStyle(lineLink.children[0]).fontSize != "24px" ? xShift : xShift + 6)) + "px";
 			lineLink.style.top = (offset.top - yShift + heightInt) + "px";
-			// $("#lineLink" + i).css({
-			// 	"position": "absolute",
-			// 	"left": $("#cornerCell" + (i + 10)).offset().left - ($("#lineLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
-			// 	"top": $("#cornerCell" + (i + 10)).offset().top - yShift + heightInt
-			// });
 		}
 		if(i < 23) {
 			let cornerCell = document.getElementById("cornerCell" + i),
@@ -261,11 +233,6 @@ var markerPlacement = (xShift, yShift) => {
 			cornerLink.style.position = "absolute";
 			cornerLink.style.left = (offset.left - (window.getComputedStyle(cornerLink.children[0]).fontSize != "24px" ? xShift : xShift + 6)) + "px";
 			cornerLink.style.top = (offset.top - yShift) + "px";
-			// $("#cornerLink" + i).css({
-			// 	"position": "absolute",
-			// 	"left": $("#cornerCell" + i).offset().left - ($("#cornerLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
-			// 	"top": $("#cornerCell" + i).offset().top - yShift
-			// });
 		}
 		if(i <= 11) {
 			let splitCell = document.getElementById("splitCell" + i),
@@ -273,16 +240,9 @@ var markerPlacement = (xShift, yShift) => {
 				rect = splitCell.getBoundingClientRect(),
 				offset = { "top": rect.top + window.scrollY, "left": rect.left + window.scrollX };
 			heightInt = splitCell.offsetHeight;
-			// str = $("#splitCell" + i).css("height");
-			// heightInt = parseInt(str.substring(0, str.length - 2));
 			splitLink.style.position = "absolute";
 			splitLink.style.left = (offset.left - (window.getComputedStyle(splitLink.children[0]).fontSize != "24px" ? xShift : xShift + 6)) + "px";
 			splitLink.style.top = (offset.top - yShift + (heightInt / 2)) + "px";
-			// $("#splitLink" + i).css({
-			// 	"position": "absolute",
-			// 	"left": $("#splitCell" + i).offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
-			// 	"top": $("#splitCell" + i).offset().top - yShift + (heightInt / 2)
-			// });
 		}
 		else if(i > 11 && i < 34) {
 			let cornerCell = document.getElementById("cornerCell" + (i - 11)),
@@ -290,16 +250,9 @@ var markerPlacement = (xShift, yShift) => {
 				rect = cornerCell.getBoundingClientRect(),
 				offset = { "top": rect.top + window.scrollY, "left": rect.left + window.scrollX };
 			heightInt = cornerCell.offsetHeight;
-			// str = $("#cornerCell" + (i - 11)).css("height");
-			// heightInt = parseInt(str.substring(0, str.length - 2));
 			splitLink.style.position = "absolute";
 			splitLink.style.left = (offset.left - (window.getComputedStyle(splitLink.children[0]).fontSize != "24px" ? xShift : xShift + 6)) + "px";
 			splitLink.style.top = (offset.top - yShift + (heightInt / 2)) + "px";
-			// $("#splitLink" + i).css({
-			// 	"position": "absolute",
-			// 	"left": $("#cornerCell" + (i - 11)).offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6),
-			// 	"top": $("#cornerCell" + (i - 11)).offset().top - yShift + (heightInt / 2)
-			// });
 		}
 		else {
 			if(i == 34) {
@@ -310,26 +263,12 @@ var markerPlacement = (xShift, yShift) => {
 					offset = { "top": rect.top + window.scrollY, "left": rect.left + window.scrollX };
 				heightInt = vertCell.offsetHeight;
 				widthInt = vertCell.offsetWidth;
-				// str = $("#vertCell1").css("height");
-				// width = $("#vertCell1").css("width");
-				// widthInt = parseInt(width.substring(0, width.length - 2));
-				// heightInt = parseInt(str.substring(0, str.length - 2));
 				splitLink1.style.position = "absolute";
 				splitLink1.style.left = (offset.left - (window.getComputedStyle(splitLink1.children[0]).fontSize != "24px" ? xShift : xShift + 6) + (widthInt / 2)) + "px";
 				splitLink1.style.top = (offset.top - yShift) + "px";
-				// $("#splitLink" + i).css({
-				// 	"position": "absolute",
-				// 	"left": $("#vertCell1").offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
-				// 	"top": $("#vertCell1").offset().top - yShift
-				// });
 				splitLink2.style.position = "absolute";
 				splitLink2.style.left = (offset.left - (window.getComputedStyle(splitLink2.children[0]).fontSize != "24px" ? xShift : xShift + 6) + (widthInt / 2)) + "px";
 				splitLink2.style.top = (offset.top - yShift + heightInt) + "px";
-				// $("#splitLink" + (i + 1)).css({
-				// 	"position": "absolute",
-				// 	"left": $("#vertCell1").offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
-				// 	"top": $("#vertCell1").offset().top - yShift + heightInt
-				// });
 				i++;
 			}
 			else if(i == 58) {
@@ -339,18 +278,9 @@ var markerPlacement = (xShift, yShift) => {
 					offset = { "top": rect.top + window.scrollY, "left": rect.left + window.scrollX };
 				heightInt = td.offsetHeight;
 				widthInt = td.offsetWidth;
-				// str = $("#td00").css("height");
-				// width = $("#td00").css("width");
-				// widthInt = parseInt(width.substring(0, width.length - 2));
-				// heightInt = parseInt(str.substring(0, str.length - 2));
 				splitLink.style.position = "absolute";
 				splitLink.style.left = (offset.left - (window.getComputedStyle(splitLink.children[0]).fontSize != "24px" ? xShift : xShift + 6) + (widthInt / 2)) + "px";
 				splitLink.style.top = (offset.top - yShift + (heightInt * 1.5)) + "px";
-				// $("#splitLink" + i).css({
-				// 	"position": "absolute",
-				// 	"left": $("#td00").offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
-				// 	"top": $("#td00").offset().top - yShift + (heightInt * 1.5)
-				// });
 			}
 			else {
 				let cornerCell = document.getElementById("cornerCell" + ((i / 2) - 17)),
@@ -360,26 +290,12 @@ var markerPlacement = (xShift, yShift) => {
 					offset = { "top": rect.top + window.scrollY, "left": rect.left + window.scrollX };
 				heightInt = cornerCell.offsetHeight;
 				widthInt = cornerCell.offsetWidth;
-				// str = $("#cornerCell" + ((i / 2) - 17)).css("height");
-				// width = $("#cornerCell" + ((i / 2) - 17)).css("width");
-				// widthInt = parseInt(width.substring(0, width.length - 2));
-				// heightInt = parseInt(str.substring(0, str.length - 2));
 				splitLink1.style.position = "absolute";
 				splitLink1.style.left = (offset.left - (window.getComputedStyle(splitLink1.children[0]).fontSize != "24px" ? xShift : xShift + 6) + (widthInt / 2)) + "px";
 				splitLink1.style.top = (offset.top - yShift) + "px";
-				// $("#splitLink" + i).css({
-				// 	"position": "absolute",
-				// 	"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
-				// 	"top": $("#cornerCell" + ((i / 2) - 17)).offset().top - yShift
-				// });
 				splitLink2.style.position = "absolute";
 				splitLink2.style.left = (offset.left - (window.getComputedStyle(splitLink2.children[0]).fontSize != "24px" ? xShift : xShift + 6) + (widthInt / 2)) + "px";
 				splitLink2.style.top = (offset.top - yShift + heightInt) + "px";
-				// $("#splitLink" + (i + 1)).css({
-				// 	"position": "absolute",
-				// 	"left": $("#cornerCell" + ((i / 2) - 17)).offset().left - ($("#splitLink" + i).children().first().css("font-size") != "24px" ? xShift : xShift + 6) + (widthInt / 2),
-				// 	"top": $("#cornerCell" + ((i / 2) - 17)).offset().top - yShift + heightInt
-				// });
 				i++;
 			}
 		}
@@ -389,15 +305,11 @@ var markerPlacement = (xShift, yShift) => {
 		if(i < 13) {
 			document.getElementById("streetLink" + i).style.display = "inline";
 			document.getElementById("lineLink" + i).style.display = "inline";
-			// $("#streetLink" + i).show();
-			// $("#lineLink" + i).show();
 		}
 		if(i < 23) {
 			document.getElementById("cornerLink" + i).style.display = "inline";
-			// $("#cornerLink" + i).show();
 		}
 		document.getElementById("splitLink" + i).style.display = "inline";
-		// $("#splitLink" + i).show();
 	}
 };
 
