@@ -126,7 +126,7 @@ app.whenReady().then(() => {
 		"showSelectAll": true
 	});
 	// Create the primary window.
-  	var primaryWindow = createWindow("primary", BrowserWindow, path);
+  	var primaryWindow = createWindow("primary", BrowserWindow, path, 1500, 1500);
   	// Maximize the primary window.
   	primaryWindow.maximize();
   	// Loads the creation of a primary window upon the activation of the app.
