@@ -6,8 +6,7 @@
   "description": "simulates all possible rolls for a given layout",
   "main": "index.js",
   "dependencies": {
-    "electron-context-menu": "^3.6.1",
-    "jquery": "^3.6.2"
+    "electron-context-menu": "^3.6.1"
   },
   "devDependencies": {
     "electron": "^22.0.0",

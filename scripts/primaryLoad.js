@@ -8,8 +8,7 @@ Declare all of the necessary variables.
 */
 const { ipcRenderer } = require("electron"),
 	path = require("path"),
-	fs = require("fs"),
-	$ = require("jquery");
+	fs = require("fs");
 
 
 
