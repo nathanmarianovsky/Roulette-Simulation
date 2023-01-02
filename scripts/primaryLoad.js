@@ -190,7 +190,7 @@ Handles the placement of markers for all corners, lines, splits, and streets.
 */
 var markerPlacement = (xShift, yShift) => {
 	// Position all corner, line, split, and street markers.
-	for(var i = 1; i < 59; i++) {
+	for(let i = 1; i < 59; i++) {
 		let str = "",
 			width = "",
 			heightInt = "",
@@ -301,7 +301,7 @@ var markerPlacement = (xShift, yShift) => {
 		}
 	}
 	// Show all corner, line, split, and street markers.
-	for(var i = 1; i < 59; i++) {
+	for(let i = 1; i < 59; i++) {
 		if(i < 13) {
 			document.getElementById("streetLink" + i).style.display = "inline";
 			document.getElementById("lineLink" + i).style.display = "inline";
@@ -324,7 +324,7 @@ Adds the listeners for all page links.
 */
 var addListeners = obj => {
 	// Extract all roulette table bets from the provided object.
-	var splitBets = obj.splitBets,
+	let splitBets = obj.splitBets,
 		lineBets = obj.lineBets,
 		streetBets = obj.streetBets,
 		cornerBets = obj.cornerBets,
@@ -364,7 +364,7 @@ var addListeners = obj => {
 			if(scenario == 1) {
 				idNum = id.substring(6);
 				header = "Street " + idNum + ": ";
-				for(var i = 0; i < streets["street" + idNum].length; i++) {
+				for(let i = 0; i < streets["street" + idNum].length; i++) {
 					header += streets["street" + idNum][i];
 					if(i != streets["street" + idNum].length - 1) {
 						header += ", ";
@@ -382,7 +382,7 @@ var addListeners = obj => {
 				else {
 					idNum = id.substring(4);
 					header = "Line " + idNum + ": ";
-					for(var i = 0; i < lines["line" + idNum].length; i++) {
+					for(let i = 0; i < lines["line" + idNum].length; i++) {
 						header += lines["line" + idNum][i];
 						if(i != lines["line" + idNum].length - 1) {
 							header += ", ";
@@ -403,7 +403,7 @@ var addListeners = obj => {
 				}
 				else {
 					header = "Split " + idNum + ": ";
-					for(var i = 0; i < splits["split" + idNum].length; i++) {
+					for(let i = 0; i < splits["split" + idNum].length; i++) {
 						header += splits["split" + idNum][i];
 						if(i != splits["split" + idNum].length - 1) {
 							header += ", ";
@@ -417,7 +417,7 @@ var addListeners = obj => {
 			else if(scenario == 4) {
 				idNum = id.substring(6);
 				header = "Corner " + idNum + ": ";
-				for(var i = 0; i < corners["corner" + idNum].length; i++) {
+				for(let i = 0; i < corners["corner" + idNum].length; i++) {
 					header += corners["corner" + idNum][i];
 					if(i != corners["corner" + idNum].length - 1) {
 						header += ", ";
@@ -448,7 +448,6 @@ var addListeners = obj => {
 			label.setAttribute("for", "bubbleInput");
 			label.style.backgroundColor = "lightblue";
 			label.textContent = "BET";
-
 			inputField.append(input, label);
 			row.append(inputField);
 			bubble.append(row);
@@ -460,7 +459,6 @@ var addListeners = obj => {
 			bubble.style.top = (offset.top - 150) + "px";
 			label.click();
 			if(currentValue != 0) { input.value = currentValue; }
-
 			input.addEventListener("input", event => {
 				if(event.target.getAttribute("scenario") == 1) {
 					event.target.value.length > 0 ? streetBets[parseInt(event.target.getAttribute("idNum")) - 1] = parseInt(event.target.value)
@@ -489,141 +487,10 @@ var addListeners = obj => {
 			});
 		});
 	}
-
-	// $(".popBet").click(function(e) {
-	// 	e.preventDefault();
-	// 	$("#bubble").remove();
-	// 	var header = "",
-	// 		og = $(this);
-	// 		id = $(this).attr("id"),
-	// 		idNum = "",
-	// 		scenario = 0,
-	// 		currentValue = 0;
-	// 	if(id.includes("street")) { scenario = 1; }
-	// 	else if(id.includes("line")) { scenario = 2; }
-	// 	else if(id.includes("split")) { scenario = 3; }
-	// 	else if(id.includes("corner")) { scenario = 4; }
-	// 	if(scenario == 1) {
-	// 		idNum = id.substring(10);
-	// 		header = "Street " + idNum + ": ";
-	// 		for(var i = 0; i < streets["street" + idNum].length; i++) {
-	// 			header += streets["street" + idNum][i];
-	// 			if(i != streets["street" + idNum].length - 1) {
-	// 				header += ", ";
-	// 			}
-	// 		}
-	// 		if(streetBets[parseInt(idNum) - 1] != 0) {
-	// 			currentValue = streetBets[parseInt(idNum) - 1];
-	// 		}
-	// 	}
-	// 	else if(scenario == 2) {
-	// 		if(id.substring(8) == 1) {
-	// 			header = "Top Line: 0, 00, 1, 2, 3";
-	// 			idNum = "1";
-	// 		}
-	// 		else {
-	// 			idNum = id.substring(8);
-	// 			header = "Line " + idNum + ": ";
-	// 			for(var i = 0; i < lines["line" + idNum].length; i++) {
-	// 				header += lines["line" + idNum][i];
-	// 				if(i != lines["line" + idNum].length - 1) {
-	// 					header += ", ";
-	// 				}
-	// 			}
-	// 		}
-	// 		if(idNum == "" && lineBets[0] != 0) {
-	// 			currentValue = lineBets[0];
-	// 		}
-	// 		else if(lineBets[parseInt(idNum) - 1] != 0) {
-	// 			currentValue = lineBets[parseInt(idNum) - 1];
-	// 		}
-	// 	}
-	// 	else if(scenario == 3) {
-	// 		idNum = id.substring(9);
-	// 		if(idNum == 58) {
-	// 			header = "Row: 0, 00";
-	// 		}
-	// 		else {
-	// 			header = "Split " + idNum + ": ";
-	// 			for(var i = 0; i < splits["split" + idNum].length; i++) {
-	// 				header += splits["split" + idNum][i];
-	// 				if(i != splits["split" + idNum].length - 1) {
-	// 					header += ", ";
-	// 				}
-	// 			}
-	// 		}
-	// 		if(splitBets[parseInt(idNum) - 1] != 0) {
-	// 			currentValue = splitBets[parseInt(idNum) - 1];
-	// 		}
-	// 	}
-	// 	else if(scenario == 4) {
-	// 		idNum = id.substring(10);
-	// 		header = "Corner " + idNum + ": ";
-	// 		for(var i = 0; i < corners["corner" + idNum].length; i++) {
-	// 			header += corners["corner" + idNum][i];
-	// 			if(i != corners["corner" + idNum].length - 1) {
-	// 				header += ", ";
-	// 			}
-	// 		}
-	// 		if(cornerBets[parseInt(idNum) - 1] != 0) {
-	// 			currentValue = cornerBets[parseInt(idNum) - 1];
-	// 		}
-	// 	}
-	// 	var bubble = $("<div>").attr("id", "bubble").css("background-color", "lightblue"),
-	// 		row = $("<div>").attr("id", "bubbleRow").addClass("row center numberedCell")
-	// 			.text(header).css("background-color", "lightblue"),
-	// 		inputField = $("<div>").addClass("input-field").css("background-color", "lightblue"),
-	// 		input = $("<input>").addClass("center").attr({
-	// 			"id": "bubbleInput",
-	// 			"type": "number"
-	// 		}),
-	// 		label = $("<label>").css("background-color", "lightblue").attr("for", "bubbleInput").text("BET");
-	// 	inputField.append(input, label);
-	// 	row.append(inputField);
-	// 	bubble.append(row);
-	// 	$("main").append(bubble);
-	// 	var bubbleWidth = bubble.css("width");
-	// 	console.log(bubble.offset().left, bubbleWidth);
-	// 	console.log(bubble.offset().top);
-	// 	bubble.css({
-	// 		"left": $(this).offset().left - (parseInt(bubbleWidth.substring(0, bubbleWidth.length - 2)) / 2.2),
-	// 		"top": $(this).offset().top - 150
-	// 	});
-	// 	label.click();
-	// 	if(currentValue != 0) { input.val(currentValue); }
-	// 	input.on("input", { "idNum": idNum, "scenario": scenario }, function(event) {
-	// 		if(event.data.scenario == 1) {
-	// 			$(this).val().length > 0 ? streetBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val())
-	// 				: streetBets[parseInt(event.data.idNum) - 1] = 0;
-	// 		}
-	// 		else if(event.data.scenario == 2) {
-	// 			$(this).val().length > 0 ? lineBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val())
-	// 				: lineBets[parseInt(event.data.idNum) - 1] = 0;
-	// 		}
-	// 		else if(event.data.scenario == 3) {
-	// 			$(this).val().length > 0 ? splitBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val())
-	// 				: splitBets[parseInt(event.data.idNum) - 1] = 0;
-	// 		}
-	// 		else if(event.data.scenario == 4) {
-	// 			$(this).val().length > 0 ? cornerBets[parseInt(event.data.idNum) - 1] = parseInt($(this).val())
-	// 				: cornerBets[parseInt(event.data.idNum) - 1] = 0;
-	// 		}
-	// 		if($(this).val().length > 0 && og.children().first().css("font-size") != "24px") {
-	// 			og.css("left", parseFloat(og.css("left").substring(0, og.css("left").length - 2)) - 6);
-	// 			og.children()[0].style.setProperty("font-size", "24px", "important");
-	// 		}
-	// 		else {
-	// 			if($(this).val().length == 0 && og.children().first().css("font-size") == "24px") {
-	// 				og.css("left", parseFloat(og.css("left").substring(0, og.css("left").length - 2)) + 6);
-	// 				og.children()[0].style.setProperty("font-size", "12px", "important");
-	// 			}
-	// 		}
-	// 	});
-	// });
 	// Listen for click and input events on all roulette table side bets.
 	let posList = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "00"];
-	for(var t = 0; t < posList.length; t++) {
-		var posElem = document.getElementById("pos" + posList[t]);
+	for(let t = 0; t < posList.length; t++) {
+		let posElem = document.getElementById("pos" + posList[t]);
 		posElem.addEventListener("input", e => {
 			let bubble = document.getElementById("bubble"),
 				iter = e.target.id.substring(3);
@@ -647,99 +514,8 @@ var addListeners = obj => {
 			if(bubble != null) { bubble.remove(); }
 		});
 	}
-	// $("#posA").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? halfBets[0] = parseInt($(this).val()) : halfBets[0] = 0;
-	// });
-	// $("#posA").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posB").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? halfBets[1] = parseInt($(this).val()) : halfBets[1] = 0;
-	// });
-	// $("#posB").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posC").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? columnBets[2] = parseInt($(this).val()) : columnBets[2] = 0;
-	// });
-	// $("#posC").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posD").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? columnBets[1] = parseInt($(this).val()) : columnBets[1] = 0;
-	// });
-	// $("#posD").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posE").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? columnBets[0] = parseInt($(this).val()) : columnBets[0] = 0;
-	// });
-	// $("#posE").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posF").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? dozenBets[0] = parseInt($(this).val()) : columnBets[0] = 0;
-	// });
-	// $("#posF").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posG").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? dozenBets[1] = parseInt($(this).val()) : columnBets[1] = 0;
-	// });
-	// $("#posG").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posH").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? dozenBets[2] = parseInt($(this).val()) : columnBets[2] = 0;
-	// });
-	// $("#posH").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posI").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? parityBets[0] = parseInt($(this).val()) : parityBets[0] = 0;
-	// });
-	// $("#posI").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posJ").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? colorBets[0] = parseInt($(this).val()) : colorBets[0] = 0;
-	// });
-	// $("#posJ").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posK").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? colorBets[1] = parseInt($(this).val()) : colorBets[1] = 0;
-	// });
-	// $("#posK").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#posL").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? parityBets[1] = parseInt($(this).val()) : parityBets[1] = 0;
-	// });
-	// $("#posL").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
-	// $("#pos00").on("input", function() {
-	// 	$("#bubble").remove();
-	// 	$(this).val().length > 0 ? singleBets[37] = parseInt($(this).val()) : singleBets[37] = 0;
-	// });
-	// $("#pos00").on("click", function() {
-	// 	$("#bubble").remove();
-	// });
 	// Listen for click and input events on all single bets.
-	for(var i = 0; i < 37; i++) {
+	for(let i = 0; i < 37; i++) {
 		let posElem = document.getElementById("pos" + i);
 		posElem.addEventListener("input", event => {
 			let bubble = document.getElementById("bubble");
@@ -753,16 +529,6 @@ var addListeners = obj => {
 			if(bubble != null) { bubble.remove(); }
 		})
 	}
-	// for(var i = 0; i < 37; i++) {
-	// 	$("#pos" + i).on("input", { "iter": i }, function(event) {
-	// 		$("#bubble").remove();
-	// 		$(this).val().length > 0 ? singleBets[event.data.iter] = parseInt($(this).val())
-	// 			: singleBets[event.data.iter] = 0;
-	// 	});
-	// 	$("#pos" + i).on("click", function() {
-	// 		$("#bubble").remove();
-	// 	});
-	// }
 	// Listen for a click event anywhere on the document to handle the removal of a bet bubble.
 	document.addEventListener("click", e => {
 	    if(e.target.id == "" && e.target.getAttribute("for") != "bubbleInput") {
@@ -770,24 +536,10 @@ var addListeners = obj => {
 	    	if(bubble != null) { bubble.remove(); }
 	    }
 	});
-	// $(document).click(function() {
-	// 	if($(event.target).attr("id") !== undefined) {
-	// 		var exception = !$(event.target).attr("id").includes("street") &&
-	// 			!$(event.target).attr("id").includes("line") &&
-	// 			!$(event.target).attr("id").includes("corner") &&
-	// 			!$(event.target).attr("id").includes("split");
-	// 	}
-	// 	else {
-	// 		var exception = true;
-	// 	}
-	//     if($(event.target).closest("#table").length === 0 && exception) {
-	//     	$("#bubble").remove();
-	//     }
-	// });
 	// Listen for a click event on the submit button in order to open up a corresponding result window.
 	document.getElementById("submit").addEventListener("click", e => {
 		e.preventDefault();
-		var holder = [],
+		let holder = [],
 			sumOutput = 0,
 			reducer = (accumulator, current) => accumulator + current,
 			sumInput = splitBets.reduce(reducer, 0) + lineBets.reduce(reducer, 0) +
@@ -795,10 +547,10 @@ var addListeners = obj => {
 				singleBets.reduce(reducer, 0) + dozenBets.reduce(reducer, 0) +
 				halfBets.reduce(reducer, 0) + columnBets.reduce(reducer, 0) +
 				parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0);
-		for(var j = 0; j < 37; j++) {
+		for(let j = 0; j < 37; j++) {
 			sumOutput = 0;
 			sumOutput += singleBets[j] * 36;
-			for(var i = 1; i < 13; i++) {
+			for(let i = 1; i < 13; i++) {
 				if(i > 1 && lines["line" + i].includes(j)) {
 					sumOutput += lineBets[i - 1] * 6;
 				}
@@ -806,20 +558,20 @@ var addListeners = obj => {
 					sumOutput += lineBets[i - 1] * 7;
 				}
 			}
-			for(var i = 1; i < 13; i++) {
+			for(let i = 1; i < 13; i++) {
 				if(streets["street" + i].includes(j)) {
 					sumOutput += streetBets[i - 1] * 12;
 				}
 			}
-			for(var i = 1; i < 58; i++) {
+			for(let i = 1; i < 58; i++) {
 				if(splits["split" + i].includes(j)) {
 					sumOutput += splitBets[i - 1] * 18;
 				}
 			}
-			if(i == 0) {
+			if(j == 0) {
 				sumOutput += splitBets[57] * 18;
 			}
-			for(var i = 1; i < 23; i++) {
+			for(let i = 1; i < 23; i++) {
 				if(corners["corner" + i].includes(j)) {
 					sumOutput += cornerBets[i - 1] * 9;
 				}
@@ -839,60 +591,6 @@ var addListeners = obj => {
 		holder.splice(0, 0, [sumInput]);
 		ipcRenderer.send("result", holder);
 	});
-	// $("#submit").click(function(e) {
-	// 	e.preventDefault();
-	// 	var holder = [],
-	// 		sumOutput = 0,
-	// 		reducer = (accumulator, current) => accumulator + current,
-	// 		sumInput = splitBets.reduce(reducer, 0) + lineBets.reduce(reducer, 0) +
-	// 			streetBets.reduce(reducer, 0) + cornerBets.reduce(reducer, 0) +
-	// 			singleBets.reduce(reducer, 0) + dozenBets.reduce(reducer, 0) +
-	// 			halfBets.reduce(reducer, 0) + columnBets.reduce(reducer, 0) +
-	// 			parityBets.reduce(reducer, 0) + colorBets.reduce(reducer, 0);
-	// 	for(var j = 0; j < 37; j++) {
-	// 		sumOutput = 0;
-	// 		sumOutput += singleBets[j] * 36;
-	// 		for(var i = 1; i < 13; i++) {
-	// 			if(i > 1 && lines["line" + i].includes(j)) {
-	// 				sumOutput += lineBets[i - 1] * 6;
-	// 			}
-	// 			else if(i == 1 && j < 4) {
-	// 				sumOutput += lineBets[i - 1] * 7;
-	// 			}
-	// 		}
-	// 		for(var i = 1; i < 13; i++) {
-	// 			if(streets["street" + i].includes(j)) {
-	// 				sumOutput += streetBets[i - 1] * 12;
-	// 			}
-	// 		}
-	// 		for(var i = 1; i < 58; i++) {
-	// 			if(splits["split" + i].includes(j)) {
-	// 				sumOutput += splitBets[i - 1] * 18;
-	// 			}
-	// 		}
-	// 		if(i == 0) {
-	// 			sumOutput += splitBets[57] * 18;
-	// 		}
-	// 		for(var i = 1; i < 23; i++) {
-	// 			if(corners["corner" + i].includes(j)) {
-	// 				sumOutput += cornerBets[i - 1] * 9;
-	// 			}
-	// 		}
-	// 		if(dozen1.includes(j)) { sumOutput += dozenBets[0] * 3; }
-	// 		else if(dozen2.includes(j)) { sumOutput += dozenBets[1] * 3; }
-	// 		else if(dozen3.includes(j)) { sumOutput += dozenBets[2] * 3; }
-	// 		j < 19 ? sumOutput += halfBets[0] * 2 : sumOutput += halfBets[1] * 2;
-	// 		if(col1.includes(j)) { sumOutput += columnBets[0] * 3; }
-	// 		else if(col2.includes(j)) { sumOutput += columnBets[1] * 3; }
-	// 		else if(col3.includes(j)) { sumOutput += columnBets[2] * 3; }
-	// 		red.includes(j) ? sumOutput += colorBets[0] * 2 : sumOutput += colorBets[1] * 2;
-	// 		j % 2 == 0 ? sumOutput += parityBets[0] * 2 : sumOutput += parityBets[1] * 2;
-	// 		holder.push([String(j), sumOutput]);
-	// 	}
-	// 	holder.splice(0, 0, ["00", (singleBets[37] * 36) + (lineBets[0] * 7) + (splitBets[57] * 17)]);
-	// 	holder.splice(0, 0, [sumInput]);
-	// 	ipcRenderer.send("result", holder);
-	// });
 	// Listen for a click event on the reset button in order to clear all bets off the roulette table.
 	document.getElementById("reset").addEventListener("click", e => {
 		e.preventDefault();
@@ -900,7 +598,7 @@ var addListeners = obj => {
 			circleBetList = document.getElementsByClassName("circleBet"),
 			letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
 		if(bubble != null) { bubble.remove(); }
-		for(var k = 0; k < circleBetList.length; k++) {
+		for(let k = 0; k < circleBetList.length; k++) {
 			if(circleBetList[k].style.fontSize == "24px") {
 				circleBetList[k].parentNode.style.setProperty("left", (parseFloat(circleBetList[k].parentNode.style.left.substring(0, circleBetList[k].parentNode.style.left.length - 2)) + 6) + "px");
 				circleBetList[k].style.setProperty("font-size", "12px", "important");
@@ -916,12 +614,12 @@ var addListeners = obj => {
 		columnBets = new Array(3).fill(0);
 		parityBets = new Array(2).fill(0);
 		colorBets = new Array(2).fill(0);
-		for(var i = 0; i < 37; i++) {
+		for(let i = 0; i < 37; i++) {
 			let posElem = document.getElementById("pos" + i);
 			posElem.value = "";
 			posElem.nextElementSibling.classList.remove("active");
 		}
-		for(var j = 0; j < letters.length; j++) {
+		for(let j = 0; j < letters.length; j++) {
 			let posElem = document.getElementById("pos" + letters[j]);
 			posElem.value = "";
 			posElem.nextElementSibling.classList.remove("active");
@@ -929,41 +627,6 @@ var addListeners = obj => {
 		M.Toast.dismissAll();
 		M.toast({"html": "All bets on the roulette table have been cleared.", "classes": "rounded"});
 	});
-	// $("#reset").click(function(e) {
-	// 	e.preventDefault();
-	// 	$("#bubble").remove();
-	// 	$("#message").remove();
-	// 	$("#resultContainer").remove();
-	// 	$(".circleBet").each((index, elem) => {
-	// 		if(elem.style.fontSize == "24px") {
-	// 			elem.parentNode.style.setProperty("left", (parseFloat(elem.parentNode.style.left.substring(0, elem.parentNode.style.left.length - 2)) + 6) + "px");
-	// 			elem.style.setProperty("font-size", "12px", "important");
-	// 		}
-	// 	});
-	// 	splitBets = new Array(58).fill(0);
-	// 	lineBets = new Array(13).fill(0);
-	// 	streetBets = new Array(12).fill(0);
-	// 	cornerBets = new Array(22).fill(0);
-	// 	singleBets = new Array(38).fill(0);
-	// 	dozenBets = new Array(3).fill(0);
-	// 	halfBets = new Array(2).fill(0);
-	// 	columnBets = new Array(3).fill(0);
-	// 	parityBets = new Array(2).fill(0);
-	// 	colorBets = new Array(2).fill(0);
-	// 	for(var i = 0; i < 37; i++) {
-	// 		$("#pos" + i).val("");
-	// 		$("#pos" + i).next().removeClass("active");
-	// 	}
-	// 	$("#pos00").val("");
-	// 	$("#pos00").next().removeClass("active");
-	// 	var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
-	// 	for(var i = 0; i < letters.length; i++) {
-	// 		$("#pos" + letters[i]).val("");
-	// 		$("#pos" + letters[i]).next().removeClass("active");
-	// 	}
-	// 	M.Toast.dismissAll();
-	// 	M.toast({"html": "All bets on the roulette table have been cleared.", "classes": "rounded"});
-	// });
 };
 
 
@@ -977,14 +640,14 @@ Loads the introductory modal if necessary.
 */
 var introductionModal = modalInstances => {
 	// Iterate through all modal instances until the helpModal is found.
-	for(var k = 0; k < modalInstances.length; k++) {
+	for(let k = 0; k < modalInstances.length; k++) {
 		if(modalInstances[k].id == "helpModal") {
 			// Change the title of the helpModal from "Help" to "Introduction" on an initial load.
 			modalInstances[k].el.children[0].children[0].innerText = "Introduction";
 			// Open the introductory modal.
 			modalInstances[k].open();
 			// Define the callback that will handle a change in the helpModal title.
-			var mutationCaller = (mutationsList, observer) => {
+			let mutationCaller = (mutationsList, observer) => {
 			    mutationsList.forEach(mutation => {
 			        if(mutation.attributeName === "class") {
 			            if(mutation.target.id == "helpModal" && !mutation.target.classList.contains("open")) {
@@ -1011,7 +674,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Introduce a small delay to allow the tooltips and modals to properly initialize.
 	setTimeout(() => {
 		// Initialize the modals and tooltips after a small delay.
-	    var tooltipElems = document.querySelectorAll(".tooltipped"),
+	    let tooltipElems = document.querySelectorAll(".tooltipped"),
 	    	modalElems = document.querySelectorAll(".modal"),
 	    	tooltipInstancesList = M.Tooltip.init(tooltipElems),
     		modalInstancesList = M.Modal.init(modalElems),
